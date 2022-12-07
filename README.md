@@ -1,6 +1,6 @@
 <img src='https://i.postimg.cc/hjkbcqPN/EEUM-logo.png' width="30%"/>
 
-<h3 align="center">Licenciatura em Engenharia Informática <br> Trabalho prático de Cálculo de Programas <br> 2022/2023 </h3>
+<h3 align="center">Licenciatura em Engenharia Informática <br> Trabalho prático de Laboratórios de Informática IV <br> 2022/2023 </h3>
 
 ---
 <h3 align="center"> Colaboradores &#129309 </h2>

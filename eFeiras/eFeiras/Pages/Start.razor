@@ -1,0 +1,82 @@
+﻿@page "/"
+@layout StartLayout
+@inject NavigationManager UriHelper
+
+<PageTitle>Index</PageTitle>
+<div align="center">
+
+
+
+    <h1>Bem vindo</h1>
+
+    <div id="fundo_formulario" align="center">
+        <div style="font-size: 20px; padding-top: 20px; padding-bottom: 50px"><strong>LOGIN</strong></div>
+
+        <!--Campo do email-->
+        <div class="form-group row">
+            <div class="container">
+                <div class="one">
+                    <i class="fa fa-user icon" style="padding-top: 10px;"></i>
+                </div>
+
+                <div class="two"> 
+                    <div class="col-sm-10">
+                        <InputText class="form-control" placeholder="Insira o seu e-mail"
+                                    @bind-Value="@e_mail" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Campo da password-->
+        <div class="form-group row" style="margin-top: 10px;">
+            <div class="container" >
+                <div class="one">
+                    <i class="fa fa-lock" style="padding-top: 10px;"></i>
+                </div>
+
+                <div class="two"> 
+                    <div class="col-sm-10">
+                        <InputText class="form-control" type="password" placeholder="Insira a sua password"
+                                    @bind-Value="@password" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Botões de iniciar sessão e criar conta-->
+        <div style="margin-top: 50px;">
+            <button class="mybtn" style="width: 70%" @onclick=@Test>Iniciar sessão</button> <br />
+            <button class="mybtn" style="width: 70%; margin-top: 10px" @onclick=@Test>Criar conta</button>
+        </div>
+        
+    </div>
+
+    <!--Janela de popup usada quando necessário-->
+    <Popup @ref="popupRef"/>
+
+    <!--
+    o que tinha nesta página antigamente
+    Welcome to your new app.
+    <br />
+    <button class="btn btn-primary" @onclick=@Navigate>Navigate</button>
+
+    <SurveyPrompt Title="How is Blazor working for you?" />
+    -->
+</div>
+@code {
+    private string e_mail = "";
+    private string password = "";
+    void Navigate()
+    {
+        LoginData.getInstance().setData(e_mail, password);
+        UriHelper.NavigateTo("counter");
+    }
+
+    private Popup? popupRef;
+
+    void Test()
+    {
+        popupRef.Show("Esta conta não existe", "Credenciais inválidas","35%","35%");
+    }
+}

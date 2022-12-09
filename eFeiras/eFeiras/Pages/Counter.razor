@@ -8,11 +8,19 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<h3>Email: @email</h3>
+<h3>Password: @password</h3>
+
 @code {
+
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
     }
+
+    private string email = LoginData.getInstance().getEmail();
+    private string password = LoginData.getInstance().getPassword();
+
 }

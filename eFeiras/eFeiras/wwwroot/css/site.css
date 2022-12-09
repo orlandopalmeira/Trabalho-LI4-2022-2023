@@ -2,6 +2,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /*font-family: 'Economica';*/
 }
 
 h1:focus {
@@ -63,6 +64,63 @@ a, .btn-link {
     color: white;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
-    }
+.blazor-error-boundary::after {
+    content: "An error has occurred."
+}
+/*Parte feita por mim*/
+#fundo_formulario {
+    font-family: Economica;
+    position: center;
+    width: 293px;
+    height: 322px;
+    background: rgba(240, 240, 240, 0.44);
+    border-radius: 25px;
+    /**/
+    margin: 20px;
+}
+
+.mybtn {
+    background-color: #d9d9d9;
+    border-width: 0;
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    /*padding: 10px 12px;*/
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.mybtn:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.container {
+    width: 90%;
+    /*height: 200px;*/
+    /*background: aqua;*/
+    margin: auto;
+    /*padding: 10px;*/
+}
+
+.one {
+    /*width: 15%;*/
+    height: 100%;
+    /*background: red;*/
+    float: left;
+    vertical-align: central;
+}
+
+.two {
+    /*margin-left: 15%;
+    height: 200px;*/
+    /*background: black;*/
+}

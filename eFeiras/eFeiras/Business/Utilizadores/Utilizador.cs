@@ -17,7 +17,7 @@
         private string? username;
         private string? password;
 
-        protected Utilizador(int id, int userType, string nome, string nif, string cartao_cidadao, string email,
+        public Utilizador(int id, int userType, string nome, string nif, string cartao_cidadao, string email,
                              string rua_porta_andar, string cidade, string codigo_postal, string apresentacao,
                              bool aprovado, string username, string password)
         {
@@ -48,6 +48,11 @@
             return this.userType;
         }
 
+        public string getNome()
+        {
+            return this.nome;
+        }
+
         public string getEmail()
         {
             return this.email;
@@ -66,6 +71,41 @@
         public string getUsername()
         {
             return this.username;
+        }
+
+        public string getRuaPortaAndar()
+        {
+            return this.rua_porta_andar;
+        }
+
+        public string getCidade()
+        {
+            return this.cidade;
+        }
+
+        public string getCodigoPostal()
+        {
+            return this.codigo_postal;
+        }
+
+        public string getApresentacao()
+        {
+            return this.apresentacao;
+        }
+
+        public bool getAprovado()
+        {
+            return this.aprovado;
+        }
+
+        public string getPassword()
+        {
+            return this.password;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.id.GetHashCode();
         }
     }
 }

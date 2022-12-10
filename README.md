@@ -9,7 +9,7 @@
 
 | Nome             | Número |
 |------------------|--------|
-| João Ribiero     | A69858 |
+| João Ribeiro     | A69858 |
 | Miguel Pinto     | A96106 |
 | Orlando Palmeira | A97755 |
 | Pedro Martins    | A97613 |

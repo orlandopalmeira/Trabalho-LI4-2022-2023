@@ -1,4 +1,6 @@
-﻿namespace eFeiras.Business.Feiras
+﻿using eFeiras.Business.Categorias;
+
+namespace eFeiras.Business.Feiras
 {
     public class Feira
     {

@@ -3,7 +3,7 @@ using eFeiras.Utils;
 
 namespace eFeiras.Business.Utilizadores
 {
-    public class UtilizadoresFacade
+    public class UtilizadoresFacade: IUtilizadoresFacade
     {
         private Map<int, Utilizador> utilizadores;
 

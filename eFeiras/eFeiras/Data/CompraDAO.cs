@@ -1,10 +1,11 @@
 ﻿using eFeiras.Business;
-using System.Collections;
-using System.Diagnostics.CodeAnalysis;
+using eFeiras.Business.SubCategorias;
+using eFeiras.Utils;
+using System.Data.SqlClient;
 
 namespace eFeiras.Data
 {
-    public class CompraDAO: IDictionary<int,Compra>
+    public class CompraDAO: Map<int,Compra>
     {
         private static CompraDAO? singleton = null;
 
@@ -18,71 +19,122 @@ namespace eFeiras.Data
         }
 
         private CompraDAO() { }
-
-
-        public Compra this[int key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public ICollection<int> Keys => throw new NotImplementedException();
-
-        public ICollection<Compra> Values => throw new NotImplementedException();
-
-        public int Count => throw new NotImplementedException();
-
-        public bool IsReadOnly => throw new NotImplementedException();
-
-        public void Add(int key, Compra value)
+        public Compra? get(int key)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(KeyValuePair<int, Compra> item)
+        public void put(int key, Compra value)
         {
             throw new NotImplementedException();
         }
 
-        public void Clear()
+        public Compra remove(int key)
         {
             throw new NotImplementedException();
         }
 
-        public bool Contains(KeyValuePair<int, Compra> item)
+        public ICollection<int> keys()
+        {
+            ICollection<int> result = new HashSet<int>();
+            string s_cmd = "SELECT * FROM dbo.Compra";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                result.Add(id);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no keys do CompraDAO");
+            }
+            return result;
+        }
+
+        public ICollection<Compra> values()
         {
             throw new NotImplementedException();
         }
 
-        public bool ContainsKey(int key)
+        public int size()
         {
-            throw new NotImplementedException();
+            int result = 0;
+            string s_cmd = "SELECT COUNT(*) FROM dbo.Compra";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int.TryParse(reader.GetString(0), out result);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no size do UtilizadorDAO");
+            }
+            return result;
         }
 
-        public void CopyTo(KeyValuePair<int, Compra>[] array, int arrayIndex)
+        public bool isEmpty()
         {
-            throw new NotImplementedException();
+            return this.size() == 0;
         }
 
-        public IEnumerator<KeyValuePair<int, Compra>> GetEnumerator()
+        public bool containsKey(int key)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            string s_cmd = "SELECT * FROM dbo.Compra WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                result = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no containsKey do CompraDAO");
+            }
+            return result;
         }
 
-        public bool Remove(int key)
+        public bool containsValue(Compra value)
         {
-            throw new NotImplementedException();
+            return this.containsKey(value.getID());
         }
 
-        public bool Remove(KeyValuePair<int, Compra> item)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public bool TryGetValue(int key, [MaybeNullWhen(false)] out Compra value)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

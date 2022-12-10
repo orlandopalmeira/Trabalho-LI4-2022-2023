@@ -1,14 +1,16 @@
-﻿using eFeiras.Business;
-using System.Collections;
-using System.Diagnostics.CodeAnalysis;
+﻿using eFeiras.Business.Categorias;
+using eFeiras.Utils;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
+using System.Data.SqlClient;
 
 namespace eFeiras.Data
 {
-    public class CategoriaDAO : IDictionary<int, Categoria>
+    public class CategoriaDAO : Map<int, Categoria>
     {
         private static CategoriaDAO? singleton = null;
 
-        public CategoriaDAO getInstance()
+        public static CategoriaDAO getInstance()
         {
             if(CategoriaDAO.singleton == null)
             {
@@ -18,69 +20,204 @@ namespace eFeiras.Data
         }
 
         private CategoriaDAO() { }
-        public Categoria this[int key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public ICollection<int> Keys => throw new NotImplementedException();
-
-        public ICollection<Categoria> Values => throw new NotImplementedException();
-
-        public int Count => throw new NotImplementedException();
-
-        public bool IsReadOnly => throw new NotImplementedException();
-
-        public void Add(int key, Categoria value)
+        public Categoria? get(int key)
         {
-            throw new NotImplementedException();
+            Categoria? result = null;
+            string s_cmd = "SELECT * FROM dbo.Categoria WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                string nome = reader.GetString(1);
+                                result = new Categoria(id, nome);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no get do Categoria");
+            }
+            return result;
         }
 
-        public void Add(KeyValuePair<int, Categoria> item)
+        public void put(int key, Categoria value)
         {
-            throw new NotImplementedException();
+            string s_cmd = "INSERT INTO dbo.Categoria (id,nome) VALUES (" + 
+                            value.getID() + "," + value.getNome() + ")";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no put do CategoriaDAO");
+            }
         }
 
-        public void Clear()
+        public Categoria remove(int key)
         {
-            throw new NotImplementedException();
+            Categoria result = this.get(key);
+            string s_cmd = "DELETE FROM dbo.Categoria WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no get do Categoria");
+            }
+            return result;
         }
 
-        public bool Contains(KeyValuePair<int, Categoria> item)
+        public ICollection<int> keys()
         {
-            throw new NotImplementedException();
+            ICollection<int> result = new HashSet<int>();
+            string s_cmd = "SELECT * FROM dbo.Categoria";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                result.Add(id);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no keys do CategoriaDAO");
+            }
+            return result;
         }
 
-        public bool ContainsKey(int key)
+        public ICollection<Categoria> values()
         {
-            throw new NotImplementedException();
+            ICollection<Categoria> categorias = new HashSet<Categoria>();
+            string s_cmd = "SELECT * FROM dbo.Categoria";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while(reader.Read())
+                            {
+                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                string nome = reader.GetString(1);
+                                categorias.Add(new Categoria(id,nome));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no values do CategoriaDAO");
+            }
+            return categorias;
         }
 
-        public void CopyTo(KeyValuePair<int, Categoria>[] array, int arrayIndex)
+        public int size()
         {
-            throw new NotImplementedException();
+            int result = 0;
+            string s_cmd = "SELECT COUNT(*) FROM dbo.Categoria";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int.TryParse(reader.GetString(0), out result);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no size do CategoriaDAO");
+            }
+            return result;
         }
 
-        public IEnumerator<KeyValuePair<int, Categoria>> GetEnumerator()
+        public bool isEmpty()
         {
-            throw new NotImplementedException();
+            return this.size() == 0;
         }
 
-        public bool Remove(int key)
+        public bool containsKey(int key)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            string s_cmd = "SELECT * FROM dbo.Categoria WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                result = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no containsKey do CategoriaDAO");
+            }
+            return result;
         }
 
-        public bool Remove(KeyValuePair<int, Categoria> item)
+        public bool containsValue(Categoria value)
         {
-            throw new NotImplementedException();
+            return this.containsKey(value.getID());  
         }
 
-        public bool TryGetValue(int key, [MaybeNullWhen(false)] out Categoria value)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

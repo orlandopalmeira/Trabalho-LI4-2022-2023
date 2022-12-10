@@ -77,6 +77,15 @@
 
     void Test()
     {
-        popupRef.Show("Esta conta não existe", "Credenciais inválidas","35%","35%");
+        IUtilizadoresFacade uf = new UtilizadoresFacade();
+        if (uf.existsEmail(e_mail))
+        {
+            popupRef.Show("Esta conta existe", "Credenciais válidas", "35%", "35%");
+        }
+        else
+        {
+            popupRef.Show("Esta conta não existe", "Credenciais válidas", "35%", "35%");
+        }
+
     }
 }

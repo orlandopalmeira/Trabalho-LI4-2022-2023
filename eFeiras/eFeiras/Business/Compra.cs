@@ -32,6 +32,11 @@ namespace eFeiras.Business
                 this.montante += p.getX().getPreco() * p.getY();
             }
         }
+
+        public int getID() 
+        {
+            return this.id;
+        }
         
         
     }

@@ -1,5 +1,6 @@
 ﻿using eFeiras.Business.Utilizadores;
 using eFeiras.Utils;
+using System.Data.SqlClient;
 
 namespace eFeiras.Data
 {
@@ -21,11 +22,25 @@ namespace eFeiras.Data
         public bool containsKey(int key) 
         {
             bool result = false;
+            string s_cmd = "SELECT * FROM dbo.Utilizador WHERE id = " + key;
             try
             {
-                
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd,con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if(reader.Read())
+                            {
+                                result = true;
+                            }
+                        }
+                    }
+                }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 throw new DAOException("Erro no containsKey do UtilizadorDAO");
             }
@@ -39,7 +54,43 @@ namespace eFeiras.Data
 
         public Utilizador get(int key)
         {
-            throw new NotImplementedException();
+            Utilizador? result = null;
+            string s_cmd = "SELECT * FROM dbo.Utilizador WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int id = -1; int.TryParse(reader["id"].ToString(), out id);
+                                int userType = -1; int.TryParse(reader[userType].ToString(), out userType);
+                                string? nome = reader["nome"].ToString();
+                                string? nif = reader["nif"].ToString();
+                                string? cartao_cidadao = reader["cartao_cidadao"].ToString();
+                                string? email = reader["e_mail"].ToString();
+                                string? rua_porta_andar = reader["rua_porta_andar"].ToString();
+                                string? cidade = reader["cidade"].ToString();
+                                string? codigo_postal = reader["codigo_postal"].ToString();
+                                string? apresentacao = reader["apresentacao"].ToString();
+                                bool aprovado = reader["aprovado"].ToString().CompareTo("1") == 0 ? true : false;
+                                string? username = reader["username"].ToString();
+                                string? password = reader["password_"].ToString();
+                                result = new Utilizador(id,userType,nome,nif,cartao_cidadao,email,rua_porta_andar,cidade,codigo_postal,apresentacao,aprovado,username,password)
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no get do UtilizadorDAO");
+            }
+            return result;
         }
 
         public bool isEmpty()
@@ -49,32 +100,154 @@ namespace eFeiras.Data
 
         public ICollection<int> keys()
         {
-            throw new NotImplementedException();
+            ICollection<int> result = new HashSet<int>();
+            string s_cmd = "SELECT * FROM dbo.Subcategoria";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                result.Add(id);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no keys do UtilizadorDAO");
+            }
+            return result;
         }
 
         public void put(int key, Utilizador value)
         {
-            throw new NotImplementedException();
+            string s_cmd = "INSERT INTO dbo.Utilizador (id,userType,nome,nif,cartao_cidadao,e_mail,rua_porta_andar,cidade,codigo_postal,apresentacao,aprovado,username,password_) VALUES" + 
+                            "(" + value.getID() + "," + value.getUserType() + "," + value.getNome() + "," +
+                            value.getNIF() + "," + value.getCC() + "," + value.getEmail() + "," + value.getRuaPortaAndar() + "," +
+                            value.getCidade() + "," + value.getCodigoPostal() + "," + value.getApresentacao() + "," +
+                            value.getAprovado() + "," + value.getUsername() + "," + value.getPassword() + ")";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no put do UtilizadorDAO");
+            }
         }
 
         public Utilizador remove(int key)
         {
-            throw new NotImplementedException();
+            Utilizador result = this.get(key);
+            string s_cmd = "DELETE FROM dbo.Utilizador WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no remove do UtilizadorDAO");
+            }
+            return result;
         }
 
         public int size()
         {
-            throw new NotImplementedException();
+            int result = 0;
+            string s_cmd = "SELECT COUNT(*) FROM dbo.Utilizador";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int.TryParse(reader.GetString(0), out result);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no size do Utilizador");
+            }
+            return result;
         }
 
         public ICollection<Utilizador> values()
         {
-            throw new NotImplementedException();
+            ICollection<Utilizador> result = new HashSet<Utilizador>();
+            string s_cmd = "SELECT * FROM dbo.Utilizador";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while(reader.Read())
+                            {
+                                int id = -1; int.TryParse(reader["id"].ToString(), out id);
+                                int userType = -1; int.TryParse(reader[userType].ToString(), out userType);
+                                string? nome = reader["nome"].ToString();
+                                string? nif = reader["nif"].ToString();
+                                string? cartao_cidadao = reader["cartao_cidadao"].ToString();
+                                string? email = reader["e_mail"].ToString();
+                                string? rua_porta_andar = reader["rua_porta_andar"].ToString();
+                                string? cidade = reader["cidade"].ToString();
+                                string? codigo_postal = reader["codigo_postal"].ToString();
+                                string? apresentacao = reader["apresentacao"].ToString();
+                                bool aprovado = reader["aprovado"].ToString().CompareTo("1") == 0 ? true : false;
+                                string? username = reader["username"].ToString();
+                                string? password = reader["password_"].ToString();
+                                result.Add(new Utilizador(id,userType,nome,nif,cartao_cidadao,
+                                                          email,rua_porta_andar,cidade,codigo_postal,
+                                                          apresentacao,aprovado,username,password));
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no values() do UtilizadorDAO");
+            }
+            return result;
         }
 
-        bool Map<int, Utilizador>.containsValue(int value)
+        bool Map<int, Utilizador>.containsValue(Utilizador value)
         {
-            throw new NotImplementedException();
+            return this.containsKey(value.getID());
         }
     }
 }

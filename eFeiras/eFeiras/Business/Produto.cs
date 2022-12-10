@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using eFeiras.Business.SubCategorias;
 using eFeiras.Business.Utilizadores;
 
 namespace eFeiras.Business

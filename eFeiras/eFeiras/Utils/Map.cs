@@ -1,8 +1,15 @@
-﻿namespace eFeiras.Utils
+﻿using System.Runtime.CompilerServices;
+
+namespace eFeiras.Utils
 {
     public interface Map<X,Y>
     {
-        public Y get(X key);
+        Y this[X key] // perigoso, talvez não se use
+        {
+            get => this.get(key);
+            set => this.put(key, value);
+        }
+        public Y? get(X key);
 
         public void put(X key, Y value);
 
@@ -17,6 +24,6 @@
 
         public bool containsKey(X key);
 
-        public bool containsValue(X value);
+        public bool containsValue(Y value);
     }
 }

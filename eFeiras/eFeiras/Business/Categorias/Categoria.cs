@@ -1,4 +1,4 @@
-﻿namespace eFeiras.Business
+﻿namespace eFeiras.Business.Categorias
 {
     public sealed class Categoria
     { // Acho por bem esta classe ser imutável

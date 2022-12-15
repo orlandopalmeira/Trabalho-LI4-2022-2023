@@ -36,7 +36,7 @@ namespace eFeiras.Data
                         {
                             if (reader.Read())
                             {
-                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                int id = reader.GetInt32(0);
                                 string nome = reader.GetString(1);
                                 result = new Categoria(id, nome);
                             }
@@ -109,7 +109,7 @@ namespace eFeiras.Data
                         {
                             while (reader.Read())
                             {
-                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                int id = reader.GetInt32(0);
                                 result.Add(id);
                             }
                         }
@@ -138,7 +138,7 @@ namespace eFeiras.Data
                         {
                             while(reader.Read())
                             {
-                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                int id = reader.GetInt32(0);
                                 string nome = reader.GetString(1);
                                 categorias.Add(new Categoria(id,nome));
                             }
@@ -168,7 +168,7 @@ namespace eFeiras.Data
                         {
                             if (reader.Read())
                             {
-                                int.TryParse(reader.GetString(0), out result);
+                                result = reader.GetInt32(0);
                             }
                         }
                     }

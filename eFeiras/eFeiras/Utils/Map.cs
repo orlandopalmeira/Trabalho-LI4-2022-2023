@@ -4,11 +4,7 @@ namespace eFeiras.Utils
 {
     public interface Map<X,Y>
     {
-        Y this[X key] // perigoso, talvez não se use
-        {
-            get => this.get(key);
-            set => this.put(key, value);
-        }
+      
         public Y? get(X key);
 
         public void put(X key, Y value);

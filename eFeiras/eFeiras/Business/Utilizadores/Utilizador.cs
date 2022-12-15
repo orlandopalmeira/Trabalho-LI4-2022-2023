@@ -4,7 +4,7 @@
     {
         // Atributos do utilizador
         private int id;
-        private int userType;
+        private int userType; // 0: ADMIN, 1: COMPRADOR, 2: VENDEDOR
         private string? nome;
         private string? nif;
         private string? cartao_cidadao;
@@ -18,8 +18,8 @@
         private string? password;
 
         public Utilizador(int id, int userType, string nome, string nif, string cartao_cidadao, string email,
-                             string rua_porta_andar, string cidade, string codigo_postal, string apresentacao,
-                             bool aprovado, string username, string password)
+                          string rua_porta_andar, string cidade, string codigo_postal, string apresentacao,
+                          bool aprovado, string username, string password)
         {
             this.id = id;
             this.userType = userType;
@@ -106,6 +106,12 @@
         public override int GetHashCode()
         {
             return this.id.GetHashCode();
+        }
+
+        public Utilizador Clone()
+        {
+            Utilizador result = new Utilizador(id, userType, nome, nif, cartao_cidadao, email, rua_porta_andar, cidade, codigo_postal, apresentacao, aprovado, username, password);
+            return result;
         }
     }
 }

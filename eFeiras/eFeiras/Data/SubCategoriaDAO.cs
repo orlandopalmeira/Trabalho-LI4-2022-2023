@@ -12,7 +12,7 @@ namespace eFeiras.Data
         private static SubCategoriaDAO? singleton = null;
         private static CategoriaDAO? categoriaDAO = null;
         private SubCategoriaDAO() { }
-        public SubCategoriaDAO getInstance()
+        public static SubCategoriaDAO getInstance()
         {
             if (SubCategoriaDAO.singleton == null)
             {
@@ -70,9 +70,9 @@ namespace eFeiras.Data
                         {
                             if (reader.Read())
                             {
-                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                int id = reader.GetInt32(0);
                                 string nome = reader.GetString(1);
-                                int id_categoria = -1; int.TryParse(reader.GetString(2), out id_categoria);
+                                int id_categoria = reader.GetInt32(2);
                                 Categoria? c = SubCategoriaDAO.categoriaDAO.get(id_categoria);
                                 if (c != null)
                                 {
@@ -110,7 +110,7 @@ namespace eFeiras.Data
                         {
                             while (reader.Read())
                             {
-                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                int id = reader.GetInt32(0);
                                 result.Add(id);
                             }
                         }
@@ -126,8 +126,8 @@ namespace eFeiras.Data
 
         public void put(int key, SubCategoria value)
         {
-            string s_cmd = "INSERT INTO dbo.Subcategoria (id,nome,categoria_id) VALUES (" +
-                            value.getId() + "," + value.getNome() + "," + value.getCategoria().getID() + ")";
+            string s_cmd = "INSERT INTO dbo.Subcategoria (nome,categoria_id) VALUES (" +
+                            value.getNome() + "," + value.getCategoria().getID() + ")";
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
@@ -182,7 +182,7 @@ namespace eFeiras.Data
                         {
                             if (reader.Read())
                             {
-                                int.TryParse(reader.GetString(0), out result);
+                                result = reader.GetInt32(0);
                             }
                         }
                     }
@@ -210,9 +210,9 @@ namespace eFeiras.Data
                         {
                             while (reader.Read())
                             {
-                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                int id = reader.GetInt32(0);
                                 string nome = reader.GetString(1);
-                                int id_categoria = -1; int.TryParse(reader.GetString(2), out id_categoria);
+                                int id_categoria = reader.GetInt32(2);
                                 result.Add(new SubCategoria(id, nome, SubCategoriaDAO.categoriaDAO.get(id_categoria)));
                             }
                         }

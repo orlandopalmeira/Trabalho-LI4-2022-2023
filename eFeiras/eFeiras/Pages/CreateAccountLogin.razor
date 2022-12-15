@@ -1,8 +1,137 @@
 ﻿@page "/createaccountlogin"
-<h3>Bem vindo</h3>
+@layout StartLayout
+@inject NavigationManager UriHelper
+
+<h3 style="color: #A7A7A7;font-family: 'Economica';">Crie a sua conta</h3>
+<div id="form_cria_conta" style="font-family: 'Economica';">
+    <div class="form-group row" style="width:500px;">
+        <div class="col-sm-10">
+            <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Nome" @bind-Value="@nome" />
+        </div>
+    </div>
+
+    <div class="form-group row" style="margin-top: 10px;width:500px;">
+        <div class="col-sm-10">
+            <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="E-mail" @bind-Value="@email" />
+        </div>
+    </div>
+
+    <div class="form-group row" style="margin-top: 10px;width:500px;">
+        <div class="col-sm-10">
+            <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Nome de utilizador" @bind-Value="@username" />
+        </div>
+    </div>
+
+    <div class="form-group row" style="margin-top: 10px;width:500px;">
+        <div class="col-sm-10">
+            <InputText class="form-control" type="password" style="background: #EEEEEE;border-radius: 3px;" placeholder="Password" @bind-Value="@password" />
+        </div>
+    </div>
+
+    <div class="form-group row" style="margin-top: 10px;width:500px;">
+        <div class="col-sm-10">
+            <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Número do cartão de cidadão" @bind-Value="@num_cc" />
+        </div>
+    </div>
+
+    <div class="form-group row" style="margin-top: 10px;width:500px;">
+        <div class="col-sm-10">
+            <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Número de identificação fiscal" @bind-Value="@nif" />
+        </div>
+    </div>
+
+    <div class="form-group row" style="margin-top: 10px;width:500px;">
+        <div class="col-sm-10">
+            <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Rua, n.º de porta, andar" @bind-Value="@rua_porta_andar" />
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 10px;margin-left: 0px">
+        <div class="one">
+            <div class="form-group row" style="position:relative;left:-12px;width:250px;">
+                <div class="col-sm-10">
+                    <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Cidade" @bind-Value="@cidade" />
+                </div>
+            </div>
+        </div>
+
+        <div class="two">
+            <div class="form-group row" style="position:relative;left:-42px;width:250px;">
+                <div class="col-sm-10">
+                    <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Código postal" @bind-Value="@codigo_postal" />
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <!--Tipo de vendedor-->
+    <div >
+        <label for="rb_comp">Comprador</label>
+        <input id="rb_comp" class="rb" type="radio" name="usertype" checked="@comprador" @onchange="@OnCheckComp" /><br />
+        <label for="rb_vend">Vendedor</label>
+        <input id="rb_vend" class="rb" type="radio" name="usertype" checked="@vendedor" @onchange="@OnCheckVend" />
+    </div>
+
+    <textarea style="background: #EEEEEE;border-radius: 3px;width: 40%;height: 40%" maxlength="4000" placeholder="Caso pretenda ser um vendedor, apresente-se. Diga quais são os seus objectivos e que tipos de produto pretende vender. Se deixar este espaço em branco, a sua conta não será aprovada."></textarea>
+    <br />
+
+    <button class="mybtn" style="width: 100px" @onclick=@TryAddAccount>Criar conta</button>
+</div>
+
+<!--Janela de popup usada quando necessário-->
+<Popup @ref="popupRef" />
 
 @code {
+    private Popup? popupRef;
+    private string nome = "";
+    private string email = "";
+    private string username = "";
+    private string num_cc = "";
+    private string nif = "";
+    private string rua_porta_andar = "";
+    private string cidade = "";
+    private string codigo_postal = "";
+    private string apresentacao = "";
+    private string password = "";
+
+
+    private bool comprador = true;
+    private bool vendedor = false;
+
+    void OnCheckComp(){
+        comprador = true; vendedor = false;
+    }
+
+    void OnCheckVend(){ 
+        comprador = false; vendedor = true; 
+    }
+
+    
+    void TryAddAccount()
+    {
+        int userType = comprador ? 1 : 2;
+        bool aprovado = comprador ? true : false;
+        IUtilizadoresFacade uf = new UtilizadoresFacade();
+        if (uf.validateNewAccount(email, num_cc, nif, username))
+        {
+            Utilizador novo = new Utilizador(-1, userType, nome, nif, num_cc, email, rua_porta_andar, cidade, codigo_postal, apresentacao, aprovado, username, password);
+            uf.adicionaConta(novo);
+            if(userType == 2) // é um vendedor
+            {
+                popupRef.Show("Como criou uma conta de vendedor, ficará pendente de aprovação. Terá de aguardar até a sua conta ser aprovada por um dos nossos administradores.", "Conta de vendedor", "35%", "35%");
+            }
+            else // é um comprador
+            {
+                popupRef.Show("A sua conta foi criada com sucesso. Já pode começar a fazer as suas compras", "Conta de comprador","35%", "35%");
+            }
+            
+            UriHelper.NavigateTo("");
+        }
+        else
+        {
+            popupRef.Show("Já existe uma conta com o email, número de cartão de cidadão, NIF ou nome de utilizador mencionados.", "Dados inválidos", "35%", "35%");
+        }
+    }
 
 }

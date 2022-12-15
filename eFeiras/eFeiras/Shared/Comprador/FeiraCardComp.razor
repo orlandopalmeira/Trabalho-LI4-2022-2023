@@ -1,0 +1,42 @@
+﻿@using System.Collections.Generic
+@using eFeiras.Business.Feiras;
+
+<div class="card" @onclick="OnClickCard">
+  <div class="card-body">
+    <h5 class="card-title">@Feira.getName()</h5>
+    <!--Colocar a imagem da feira, a data de inicio e de fim e a categoria.-->
+
+  </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .card-body {
+        padding: 2px 16px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-text {
+        font-size: 14px;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Feira? Feira { get; set; }
+
+    public void OnClickCard()
+    {
+        // TODO: Arranjar maneira de redirecionar para a página da feira.
+    }
+}

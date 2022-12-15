@@ -23,19 +23,19 @@ namespace eFeiras.Data
             throw new NotImplementedException();
         }
 
-        public bool containsValue(int value)
+        public bool containsValue(Feira value)
         {
             throw new NotImplementedException();
         }
 
-        public Feira get(int key)
+        public Feira? get(int key)
         {
             throw new NotImplementedException();
         }
 
         public bool isEmpty()
         {
-            return this.size() == 0;
+            throw new NotImplementedException();
         }
 
         public ICollection<int> keys()

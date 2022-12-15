@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Media\" />
+    <Folder Include="Pages\Administrador\" />
+    <Folder Include="Pages\Geral\" />
+    <Folder Include="Pages\Vendedor\" />
+    <Folder Include="Shared\Administrador\" />
+    <Folder Include="Shared\Vendedor\" />
+    <Folder Include="wwwroot\Media\uploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Media\logo.png" />
   </ItemGroup>
 
   <ItemGroup>

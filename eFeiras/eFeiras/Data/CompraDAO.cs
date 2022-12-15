@@ -49,7 +49,7 @@ namespace eFeiras.Data
                         {
                             while (reader.Read())
                             {
-                                int id = -1; int.TryParse(reader.GetString(0), out id);
+                                int id = reader.GetInt32(0);
                                 result.Add(id);
                             }
                         }
@@ -83,7 +83,7 @@ namespace eFeiras.Data
                         {
                             if (reader.Read())
                             {
-                                int.TryParse(reader.GetString(0), out result);
+                                result= reader.GetInt32(0);
                             }
                         }
                     }

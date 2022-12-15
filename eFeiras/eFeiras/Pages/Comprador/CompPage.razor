@@ -1,0 +1,33 @@
+﻿@using eFeiras.Business.Feiras;
+@using eFeiras.Shared.Comprador;
+
+<h3>Feiras em curso</h3>
+
+<div class="card-deck">
+    @foreach (Feira feira in apresentaFeiras())
+    {
+        <div class="col-md-4">
+            <FeiraCardComp Feira="feira" />
+        </div>
+    }
+</div>
+
+<style>
+    .card-deck {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 16px;
+    }
+
+    .col-md-4 {
+        padding: 0;
+    }
+</style>
+
+@code {
+    private ICollection<Feira> apresentaFeiras()
+    {
+        IFeirasFacade ff = new FeirasFacade();
+        return ff.feirasEmCurso();
+    }
+}

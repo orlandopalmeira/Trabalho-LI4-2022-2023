@@ -1,86 +1,243 @@
-﻿using eFeiras.Business;
-using System.Collections;
-using System.Diagnostics.CodeAnalysis;
+﻿using eFeiras.Business.Categorias;
+using eFeiras.Business.Produtos;
+using eFeiras.Business.SubCategorias;
+using eFeiras.Business.Utilizadores;
+using eFeiras.Utils;
+using System.Data.SqlClient;
 
 namespace eFeiras.Data
 {
-    public class ProdutoDAO: IDictionary<int,Produto>
+    public class ProdutoDAO: Map<int,Produto>
     {
         private static ProdutoDAO? singleton = null;
+        private static SubCategoriaDAO? scDAO = null;
+        private static UtilizadorDAO? userDAO = null;
         private ProdutoDAO() { }
 
-        public ProdutoDAO getInstance()
+        public static ProdutoDAO getInstance()
         {
-            if(ProdutoDAO.singleton == null)
+            if (ProdutoDAO.singleton == null)
             {
                 ProdutoDAO.singleton = new ProdutoDAO();
+                ProdutoDAO.scDAO = SubCategoriaDAO.getInstance();
+                ProdutoDAO.userDAO = UtilizadorDAO.getInstance();
             }
             return ProdutoDAO.singleton;
         }
 
-        public Produto this[int key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public ICollection<int> Keys => throw new NotImplementedException();
-
-        public ICollection<Produto> Values => throw new NotImplementedException();
-
-        public int Count => throw new NotImplementedException();
-
-        public bool IsReadOnly => throw new NotImplementedException();
-
-        public void Add(int key, Produto value)
+        public bool containsKey(int key)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            string s_cmd = "SELECT * FROM dbo.Produto WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                result = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no containsKey do ProdutoDAO");
+            }
+            return result;
         }
 
-        public void Add(KeyValuePair<int, Produto> item)
+        public bool containsValue(Produto value)
         {
-            throw new NotImplementedException();
+            return this.containsKey(value.getID());
         }
 
-        public void Clear()
+        public Produto? get(int key)
         {
-            throw new NotImplementedException();
+            Produto? result = null;
+            string s_cmd = "SELECT * FROM dbo.Produto WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string? nome = reader.GetString(1);
+                                string? descricao = reader.GetString(2);
+                                float preco = reader.GetFloat(3);
+                                int qnt_disp = reader.GetInt32(4);
+                                string? img_path = reader.GetString(5);
+                                int vendedor_id = reader.GetInt32(6);
+                                Utilizador vendedor = userDAO.get(vendedor_id);
+                                int subcat_id = reader.GetInt32(7);
+                                SubCategoria subcat = scDAO.get(subcat_id);
+                                result = new Produto(id, nome, descricao, preco, qnt_disp, img_path, vendedor, subcat);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no get do ProdutoDAO");
+            }
+            return result;
         }
 
-        public bool Contains(KeyValuePair<int, Produto> item)
+        public bool isEmpty()
         {
-            throw new NotImplementedException();
+            return this.size() == 0;
         }
 
-        public bool ContainsKey(int key)
+        public ICollection<int> keys()
         {
-            throw new NotImplementedException();
+            ICollection<int> result = new HashSet<int>();
+            string s_cmd = "SELECT * FROM dbo.Produto";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                result.Add(id);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no keys do ProdutoDAO");
+            }
+            return result;
         }
 
-        public void CopyTo(KeyValuePair<int, Produto>[] array, int arrayIndex)
+        public void put(int key, Produto value) 
         {
-            throw new NotImplementedException();
+            string s_cmd = "INSERT INTO dbo.Produto (nome,descricao,preco,quantidade_disponivel,imagem,Utilizador_id,SubCategoria_id) VALUES (" +
+                           value.getNome() + "," + value.getDescricao() + "," + value.getQuantidadeDisponivel() + "," +
+                           value.getImg_path() + "," + value.getVendedorId() + "," + value.getSubcategoriaId() + ")";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no put do ProdutoDAO");
+            }
         }
 
-        public IEnumerator<KeyValuePair<int, Produto>> GetEnumerator()
+        public Produto remove(int key)
         {
-            throw new NotImplementedException();
+            Produto result = this.get(key);
+            string s_cmd = "DELETE FROM dbo.Produto WHERE id = " + key;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no remove do ProdutoDAO");
+            }
+            return result;
         }
 
-        public bool Remove(int key)
+        public int size()
         {
-            throw new NotImplementedException();
+            int result = 0;
+            string s_cmd = "SELECT COUNT(*) FROM dbo.Produto";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                result= reader.GetInt32(0);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no size do ProdutoDAO");
+            }
+            return result;
         }
 
-        public bool Remove(KeyValuePair<int, Produto> item)
+        public ICollection<Produto> values()
         {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetValue(int key, [MaybeNullWhen(false)] out Produto value)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
+            ICollection<Produto> result = new HashSet<Produto>();
+            string s_cmd = "SELECT * FROM dbo.Produto";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string? nome = reader.GetString(1);
+                                string? descricao = reader.GetString(2);
+                                float preco = reader.GetFloat(3);
+                                int qnt_disp = reader.GetInt32(4);
+                                string? img_path = reader.GetString(5);
+                                int vendedor_id = reader.GetInt32(6);
+                                Utilizador vendedor = userDAO.get(vendedor_id);
+                                int subcat_id = reader.GetInt32(7);
+                                SubCategoria subcat = scDAO.get(subcat_id);
+                                result.Add(new Produto(id, nome, descricao, preco, qnt_disp, img_path, vendedor, subcat));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no values do ProdutoDAO");
+            }
+            return result;
         }
     }
 }

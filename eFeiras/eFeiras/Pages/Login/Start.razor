@@ -3,22 +3,24 @@
 @inject NavigationManager UriHelper
 
 <PageTitle>Index</PageTitle>
+<!--Logotipo da feira no canto superior esquerdo-->
+<img src="Media/logo.png" alt="logotipo eFeiras" style="width: 100px">
+<!--Este hr é aquela linha que está por baixo do logotipo-->
+<hr width="104.3%" style="position: relative; left: -30px;"/>
 <div align="center">
 
-
-
-    <h1>Bem vindo</h1>
-
-    <div id="fundo_formulario" align="center">
+    <div id="fundo_formulario_start" align="center">
         <div style="font-size: 20px; padding-top: 20px; padding-bottom: 50px"><strong>LOGIN</strong></div>
 
         <!--Campo do email-->
         <div class="form-group row">
             <div class="container">
+                <!--Ícone do boneco-->
                 <div class="one">
                     <i class="fa fa-user icon" style="padding-top: 10px;"></i>
                 </div>
 
+                <!--Parte para o utilizador escrever-->
                 <div class="two"> 
                     <div class="col-sm-10">
                         <InputText class="form-control" placeholder="Insira o seu e-mail"
@@ -31,10 +33,12 @@
         <!--Campo da password-->
         <div class="form-group row" style="margin-top: 10px;">
             <div class="container" >
+                <!--Ícone do cadeado-->
                 <div class="one">
                     <i class="fa fa-lock" style="padding-top: 10px;"></i>
                 </div>
 
+                <!--Parte para o utilizador escrever-->
                 <div class="two"> 
                     <div class="col-sm-10">
                         <InputText class="form-control" type="password" placeholder="Insira a sua password"
@@ -47,33 +51,22 @@
         <!--Botões de iniciar sessão e criar conta-->
         <div style="margin-top: 50px;">
             <button class="mybtn" style="width: 70%" @onclick=@Test>Iniciar sessão</button> <br />
-            <button class="mybtn" style="width: 70%; margin-top: 10px" @onclick=@Test>Criar conta</button>
+            <button class="mybtn" style="width: 70%; margin-top: 10px" @onclick=@ToCreateAccount>Criar conta</button>
         </div>
         
     </div>
+    <!--Janela de popup usada quando necessário. Por exemplo, indica que a conta fornecida não existe.-->
+    <Popup @ref="popupRef"/> 
+    <!--<InputFile OnChange="HandleFileSelected" /> Para fazer o upload de um ficheiro-->
 
-    <!--Janela de popup usada quando necessário-->
-    <Popup @ref="popupRef"/>
 
-    <!--
-    o que tinha nesta página antigamente
-    Welcome to your new app.
-    <br />
-    <button class="btn btn-primary" @onclick=@Navigate>Navigate</button>
-
-    <SurveyPrompt Title="How is Blazor working for you?" />
-    -->
 </div>
 @code {
     private string e_mail = "";
     private string password = "";
-    void Navigate()
-    {
-        LoginData.getInstance().setData(e_mail, password);
-        UriHelper.NavigateTo("counter");
-    }
 
     private Popup? popupRef;
+
 
     void Test()
     {
@@ -81,11 +74,33 @@
         if (uf.existsEmail(e_mail))
         {
             popupRef.Show("Esta conta existe", "Credenciais válidas", "35%", "35%");
+            // redirecionar para a página do utilizador para ver as feiras e assim.
         }
         else
         {
-            popupRef.Show("Esta conta não existe", "Credenciais válidas", "35%", "35%");
+
+            popupRef.Show("Esta conta não existe", "Credenciais inválidas", "35%", "35%");
         }
 
     }
+
+    void ToCreateAccount()
+    {
+        UriHelper.NavigateTo("createaccountlogin");
+    }
+    /*
+     * Para guardar o ficheiro dado pelo utilizador noutra diretoria
+    private string SelectedFileName { get; set; }
+    private async Task HandleFileSelected(InputFileChangeEventArgs args)
+    {
+        var file = args.File;
+        SelectedFileName = file.Name;
+        MemoryStream ms = new MemoryStream();
+        await file.OpenReadStream().CopyToAsync(ms);
+        byte[] bytes = ms.ToArray();
+        String path = Directory.GetCurrentDirectory().Replace('\\','/') + "/wwwroot/Media/uploads/test.png"; // para usar isto temos de fazer o using System.IO
+        using var stream = File.Create(path);
+        stream.Write(bytes, 0, bytes.Length);
+        popupRef.Show(SelectedFileName , "Imagem", "35%", "35%");
+    }*/
 }

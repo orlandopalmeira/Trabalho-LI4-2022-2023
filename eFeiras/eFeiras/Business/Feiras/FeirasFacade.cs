@@ -3,7 +3,7 @@ using eFeiras.Utils;
 
 namespace eFeiras.Business.Feiras
 {
-    public class FeirasFacade
+    public class FeirasFacade: IFeirasFacade
     {
         private Map<int, Feira> feiras;
 
@@ -12,11 +12,11 @@ namespace eFeiras.Business.Feiras
             this.feiras = FeiraDAO.getInstance();
         }
 
-        private bool existsSomething(Func<Feira,bool> predicate)
+        private bool existsSomething(Func<Feira, bool> predicate)
         {
             bool result = false;
             ICollection<Feira> feiras_ = this.feiras.values();
-            foreach(Feira f in feiras_)
+            foreach (Feira f in feiras_)
             {
                 if (predicate(f))
                 {
@@ -31,6 +31,11 @@ namespace eFeiras.Business.Feiras
         {
             // verifica se já existe uma feira com o nome mencionado.
             return this.existsSomething((Feira f) => name.CompareTo(f.getName()) == 0);
+        }
+
+        public ICollection<Feira> feirasEmCurso()
+        {
+            return (ICollection<Feira>)(this.feiras.values().Where((Feira feira) => feira.emCurso()));
         }
     }
 }

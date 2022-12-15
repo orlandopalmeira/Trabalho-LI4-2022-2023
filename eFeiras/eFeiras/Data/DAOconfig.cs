@@ -11,8 +11,6 @@ namespace eFeiras.Data
         public const string PASSWORD = "orlando912";
         public const string MACHINE = "ORLANDOPC\\SQLEXPRESS";
         public const string DATABASE = "eFeiras";
-        public const string CONNECTION_STR = @"Data Source=" + MACHINE + ";Initial Catalog=" + DATABASE + 
-                                              ";User ID=" + USER + ";Password=" + PASSWORD;
     
         public static string GetConnectionString()
         {

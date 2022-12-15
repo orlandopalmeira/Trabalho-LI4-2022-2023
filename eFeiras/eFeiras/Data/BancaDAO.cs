@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace eFeiras.Data
 {
-    public class BancaDAO: IDictionary<Pair<int,int>,Banca>
+    public class BancaDAO: Map<Pair<int,int>,Banca>
     {
         private static BancaDAO? singleton = null;
 
@@ -17,67 +17,47 @@ namespace eFeiras.Data
             return BancaDAO.singleton;
         }
 
-        public Banca this[Pair<int, int> key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public ICollection<Pair<int, int>> Keys => throw new NotImplementedException();
-
-        public ICollection<Banca> Values => throw new NotImplementedException();
-
-        public int Count => throw new NotImplementedException();
-
-        public bool IsReadOnly => throw new NotImplementedException();
-
-        public void Add(Pair<int, int> key, Banca value)
+        public bool containsKey(Pair<int, int> key)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(KeyValuePair<Pair<int, int>, Banca> item)
+        public bool containsValue(Banca value)
         {
             throw new NotImplementedException();
         }
 
-        public void Clear()
+        public Banca? get(Pair<int, int> key)
         {
             throw new NotImplementedException();
         }
 
-        public bool Contains(KeyValuePair<Pair<int, int>, Banca> item)
+        public bool isEmpty()
         {
             throw new NotImplementedException();
         }
 
-        public bool ContainsKey(Pair<int, int> key)
+        public ICollection<Pair<int, int>> keys()
         {
             throw new NotImplementedException();
         }
 
-        public void CopyTo(KeyValuePair<Pair<int, int>, Banca>[] array, int arrayIndex)
+        public void put(Pair<int, int> key, Banca value)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerator<KeyValuePair<Pair<int, int>, Banca>> GetEnumerator()
+        public Banca remove(Pair<int, int> key)
         {
             throw new NotImplementedException();
         }
 
-        public bool Remove(Pair<int, int> key)
+        public int size()
         {
             throw new NotImplementedException();
         }
 
-        public bool Remove(KeyValuePair<Pair<int, int>, Banca> item)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        bool IDictionary<Pair<int, int>, Banca>.TryGetValue(Pair<int, int> key, out Banca value)
+        public ICollection<Banca> values()
         {
             throw new NotImplementedException();
         }

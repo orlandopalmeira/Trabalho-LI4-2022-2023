@@ -80,7 +80,7 @@ namespace eFeiras.Data
                                 bool aprovado = reader["aprovado"].ToString().CompareTo("1") == 0 ? true : false;
                                 string? username = reader["username"].ToString();
                                 string? password = reader["password_"].ToString();
-                                result = new Utilizador(id,userType,nome,nif,cartao_cidadao,email,rua_porta_andar,cidade,codigo_postal,apresentacao,aprovado,username,password)
+                                result = new Utilizador(id, userType, nome, nif, cartao_cidadao, email, rua_porta_andar, cidade, codigo_postal, apresentacao, aprovado, username, password);
                             }
                         }
                     }
@@ -129,11 +129,11 @@ namespace eFeiras.Data
 
         public void put(int key, Utilizador value)
         {
-            string s_cmd = "INSERT INTO dbo.Utilizador (id,userType,nome,nif,cartao_cidadao,e_mail,rua_porta_andar,cidade,codigo_postal,apresentacao,aprovado,username,password_) VALUES" + 
-                            "(" + value.getID() + "," + value.getUserType() + "," + value.getNome() + "," +
-                            value.getNIF() + "," + value.getCC() + "," + value.getEmail() + "," + value.getRuaPortaAndar() + "," +
-                            value.getCidade() + "," + value.getCodigoPostal() + "," + value.getApresentacao() + "," +
-                            value.getAprovado() + "," + value.getUsername() + "," + value.getPassword() + ")";
+            string s_cmd = "INSERT INTO dbo.Utilizador (userType,nome,nif,cartao_cidadao,e_mail,rua_porta_andar,cidade,codigo_postal,apresentacao,aprovado,username,password_) VALUES" + 
+                            "('" + value.getUserType() + "','" + value.getNome() + "','" +
+                            value.getNIF() + "','" + value.getCC() + "','" + value.getEmail() + "','" + value.getRuaPortaAndar() + "','" +
+                            value.getCidade() + "','" + value.getCodigoPostal() + "','" + value.getApresentacao() + "','" +
+                            (value.getAprovado() ? "1" : "0") + "','" + value.getUsername() + "','" + value.getPassword() + "')";
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
@@ -204,31 +204,31 @@ namespace eFeiras.Data
         public ICollection<Utilizador> values()
         {
             ICollection<Utilizador> result = new HashSet<Utilizador>();
-            string s_cmd = "SELECT * FROM dbo.Utilizador";
+            string s_cmd = "select * from dbo.Utilizador";
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
                 {
+                    con.Open();
                     using (SqlCommand cmd = new SqlCommand(s_cmd, con))
                     {
-                        con.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while(reader.Read())
                             {
-                                int id = -1; int.TryParse(reader["id"].ToString(), out id);
-                                int userType = -1; int.TryParse(reader[userType].ToString(), out userType);
-                                string? nome = reader["nome"].ToString();
-                                string? nif = reader["nif"].ToString();
-                                string? cartao_cidadao = reader["cartao_cidadao"].ToString();
-                                string? email = reader["e_mail"].ToString();
-                                string? rua_porta_andar = reader["rua_porta_andar"].ToString();
-                                string? cidade = reader["cidade"].ToString();
-                                string? codigo_postal = reader["codigo_postal"].ToString();
-                                string? apresentacao = reader["apresentacao"].ToString();
-                                bool aprovado = reader["aprovado"].ToString().CompareTo("1") == 0 ? true : false;
-                                string? username = reader["username"].ToString();
-                                string? password = reader["password_"].ToString();
+                                int id = reader.GetInt32(0);
+                                int userType = Convert.ToInt32(reader.GetByte(1));
+                                string? nome = reader.GetString(2);
+                                string? nif = reader.GetString(3);
+                                string? cartao_cidadao = reader.GetString(4);
+                                string? email = reader.GetString(5);
+                                string? rua_porta_andar = reader.GetString(6);
+                                string? cidade = reader.GetString(7);
+                                string? codigo_postal = reader.GetString(8);
+                                string? apresentacao = reader.GetString(9);
+                                bool aprovado = reader.GetBoolean(10);
+                                string? username = reader.GetString(11);
+                                string? password = reader.GetString(12);
                                 result.Add(new Utilizador(id,userType,nome,nif,cartao_cidadao,
                                                           email,rua_porta_andar,cidade,codigo_postal,
                                                           apresentacao,aprovado,username,password));
@@ -245,9 +245,5 @@ namespace eFeiras.Data
             return result;
         }
 
-        bool Map<int, Utilizador>.containsValue(Utilizador value)
-        {
-            return this.containsKey(value.getID());
-        }
     }
 }

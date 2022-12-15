@@ -1,8 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using eFeiras.Business.SubCategorias;
+﻿using eFeiras.Business.SubCategorias;
 using eFeiras.Business.Utilizadores;
 
-namespace eFeiras.Business
+namespace eFeiras.Business.Produtos
 {
     public class Produto
     {
@@ -12,15 +11,11 @@ namespace eFeiras.Business
         private float preco;
         private int quantidade_disponivel;
         private string img_path;
-        // Depois vemos qual é o mais conveniente.
         private Utilizador vendedor;
-        private int utilizadorID;
-        // Depois vemos qual é o mais conveniente.
         private SubCategoria subCategoria;
-        private int subCategoriaID;
 
         public Produto(int id, string nome, string descricao, float preco, int qnt_disp, string img_path,
-                       Utilizador vendedor, int utilizadorID, SubCategoria sc, int scID)
+                       Utilizador vendedor, SubCategoria sc)
         {
             this.id = id;
             this.nome = nome;
@@ -29,12 +24,36 @@ namespace eFeiras.Business
             this.quantidade_disponivel = qnt_disp;
             this.img_path = img_path;
             this.vendedor = vendedor; //.clone()? Talvez sim, um utilizador não é imutável.
-            this.utilizadorID = utilizadorID;
             this.subCategoria = sc; //.clone()? Talvez não, uma subcategoria poderá ser imutável
-            this.subCategoriaID = scID;
         }
 
-        public float getPreco() { return this.preco; }
+
+        public int getID()
+        {
+            return this.id;
+        }
+
+        public string getNome() { return nome; }
+
+        public string getDescricao() { return descricao; }
+
+        public float getPreco() { return preco; }
+
+        public int getQuantidadeDisponivel() { return quantidade_disponivel;}
+
+        public string getImg_path() { return img_path; }
+        public int getVendedorId()
+        {
+            return this.vendedor.getID();
+        }
+
+        public int getSubcategoriaId() { return subCategoria.getId(); }
+
+        public override int GetHashCode()
+        {
+            return this.id.GetHashCode();
+        }
+
 
     }
 }

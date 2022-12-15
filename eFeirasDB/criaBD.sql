@@ -61,7 +61,7 @@ create table Produto(
 	quantidade_disponivel int not null,
 	imagem varchar(500) not null,
 	Utilizador_id int not null foreign key references Utilizador(id),
-	SubCategoria int not null foreign key references Subcategoria(id)
+	SubCategoria_id int not null foreign key references Subcategoria(id)
 );
 
 -- 7

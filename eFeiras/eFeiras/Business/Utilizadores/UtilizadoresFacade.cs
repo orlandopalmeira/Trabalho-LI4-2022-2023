@@ -17,6 +17,22 @@ namespace eFeiras.Business.Utilizadores
             return this.utilizadores.get(userID).getUserType();
         }
 
+        public Utilizador getUser(int userID)
+        {
+            return this.utilizadores.get(userID);
+        }
+
+        public Utilizador getUserByEmail(string email)
+        {
+            Utilizador user = this.utilizadores.values().Where((Utilizador u) => u.getEmail() == email).ElementAt(0);
+            return user;
+        }
+
+        public Utilizador getUser(Utilizador user)
+        {
+            return this.getUser(user.getID());
+        }
+
         private bool existsSomething(Func<Utilizador,bool> predicate){
             ICollection<Utilizador> users = this.utilizadores.values();
             bool result = false;
@@ -55,6 +71,12 @@ namespace eFeiras.Business.Utilizadores
             // verifica se não existe alguma conta no sistema que já tenha algum destes parâmetros
             return !(this.existsEmail(email) || this.existsCC(cc) || 
                      this.existsNIF(nif) || this.existsUsername(username));
+        }
+
+        public bool passwordMatch(string email, string password)
+        {
+            Utilizador user = this.utilizadores.values().Where((Utilizador u) => u.getEmail() == email).ElementAt(0);
+            return user.getPassword().Equals(password);
         }
 
         public bool adicionaConta(Utilizador novo)

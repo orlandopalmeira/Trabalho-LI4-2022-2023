@@ -3,7 +3,7 @@ using eFeiras.Utils;
 
 namespace eFeiras.Business.SubCategorias
 {
-    public class SubCategoriasFacade
+    public class SubCategoriasFacade : ISubCategoriasFacade
     {
         private Map<int, SubCategoria> subcategorias;
 

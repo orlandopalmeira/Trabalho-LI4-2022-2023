@@ -2,7 +2,6 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    /*font-family: 'Economica';*/
 }
 
 h1:focus {
@@ -68,16 +67,6 @@ a, .btn-link {
     content: "An error has occurred."
 }
 /*Parte feita por mim*/
-#fundo_formulario_start {
-    font-family: Economica;
-    position: center;
-    width: 293px;
-    height: 322px;
-    background: rgba(240, 240, 240, 0.44);
-    border-radius: 25px;
-    /**/
-    margin: 20px;
-}
 
 .mybtn {
     background-color: #d9d9d9;
@@ -105,16 +94,11 @@ a, .btn-link {
 
 .container {
     width: 90%;
-    /*height: 200px;*/
-    /*background: aqua;*/
     margin: auto;
-    /*padding: 10px;*/
 }
 
 .one {
-    /*width: 15%;*/
-    height: 100%;
-    /*background: red;*/
+    height: auto;/*100%;*/
     float: left;
     vertical-align: central;
 }

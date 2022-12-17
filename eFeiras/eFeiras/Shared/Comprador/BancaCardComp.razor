@@ -1,0 +1,41 @@
+﻿@using eFeiras.Business.Bancas;
+@inject NavigationManager NavigationManager
+
+@if(Banca != null)
+{
+    <div class="cardBanca">
+        <div style="display: flex; align-items: center; width: 100%">
+            <h5 style="font-size:30px; padding: 10px">@Banca.getTitulo()</h5>
+        </div>
+        <div style="display: flex; align-items: end; width: 100%; font-size: 20px">
+            Proprietário: @Banca.getVendedor().getNome()
+        </div>
+    </div>
+}
+
+<style>
+    .cardBanca{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-radius: 10px;
+        width: 98%;
+        height: 80px;
+        background-color: white;
+    }
+
+    .cardBanca:hover{
+        opacity: 70%;
+        cursor: pointer;
+    }
+
+
+</style>
+@code {
+    [Parameter]
+    public Banca? Banca { get; set; }
+
+    private void OnClickCard()
+    {
+        // redirecionar para a página da banca  
+    }
+}

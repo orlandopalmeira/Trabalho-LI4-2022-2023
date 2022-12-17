@@ -1,7 +1,8 @@
-﻿using eFeiras.Business.Categorias;
+﻿using Dapper;
+using eFeiras.Business.Categorias;
+using eFeiras.Business.SubCategorias;
 using eFeiras.Utils;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
-using Microsoft.AspNetCore.Mvc.Diagnostics;
 using System.Data.SqlClient;
 
 namespace eFeiras.Data
@@ -9,12 +10,14 @@ namespace eFeiras.Data
     public class CategoriaDAO : Map<int, Categoria>
     {
         private static CategoriaDAO? singleton = null;
+        private static SubCategoriaDAO? subcatDAO = null;
 
         public static CategoriaDAO getInstance()
         {
             if(CategoriaDAO.singleton == null)
             {
                 CategoriaDAO.singleton = new CategoriaDAO();
+                CategoriaDAO.subcatDAO = SubCategoriaDAO.getInstance();
             }
             return CategoriaDAO.singleton;
         }
@@ -23,38 +26,13 @@ namespace eFeiras.Data
 
         public Categoria? get(int key)
         {
-            Categoria? result = null;
-            string s_cmd = "SELECT * FROM dbo.Categoria WHERE id = " + key;
-            try
-            {
-                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
-                {
-                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
-                    {
-                        con.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                int id = reader.GetInt32(0);
-                                string nome = reader.GetString(1);
-                                result = new Categoria(id, nome);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new DAOException("Erro no get do Categoria");
-            }
-            return result;
+            return DAOAuxiliar.getCategoria(key);
         }
 
         public void put(int key, Categoria value)
         {
-            string s_cmd = "INSERT INTO dbo.Categoria (id,nome) VALUES (" + 
-                            value.getID() + "," + value.getNome() + ")";
+            string s_cmd = "INSERT INTO dbo.Categoria (id,nome) VALUES ('" + 
+                            value.getID() + "','" + value.getNome() + "')";
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
@@ -96,61 +74,12 @@ namespace eFeiras.Data
 
         public ICollection<int> keys()
         {
-            ICollection<int> result = new HashSet<int>();
-            string s_cmd = "SELECT * FROM dbo.Categoria";
-            try
-            {
-                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
-                {
-                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
-                    {
-                        con.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                int id = reader.GetInt32(0);
-                                result.Add(id);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new DAOException("Erro no keys do CategoriaDAO");
-            }
-            return result;
+            return DAOAuxiliar.getCategoriasIDs();
         }
 
         public ICollection<Categoria> values()
         {
-            ICollection<Categoria> categorias = new HashSet<Categoria>();
-            string s_cmd = "SELECT * FROM dbo.Categoria";
-            try
-            {
-                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
-                {
-                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
-                    {
-                        con.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            while(reader.Read())
-                            {
-                                int id = reader.GetInt32(0);
-                                string nome = reader.GetString(1);
-                                categorias.Add(new Categoria(id,nome));
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new DAOException("Erro no values do CategoriaDAO");
-            }
-            return categorias;
+            return DAOAuxiliar.getCategorias();
         }
 
         public int size()

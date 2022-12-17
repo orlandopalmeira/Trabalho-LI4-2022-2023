@@ -4,36 +4,36 @@
     {
         // Atributos do utilizador
         private int id;
-        private int userType; // 0: ADMIN, 1: COMPRADOR, 2: VENDEDOR
-        private string? nome;
-        private string? nif;
-        private string? cartao_cidadao;
-        private string? email;
-        private string? rua_porta_andar;
-        private string? cidade;
-        private string? codigo_postal;
-        private string? apresentacao;
+        private byte userType; // 0: ADMIN, 1: COMPRADOR, 2: VENDEDOR
+        private string nome;
+        private string nif;
+        private string cartao_cidadao;
+        private string email;
+        private string rua_porta_andar;
+        private string cidade;
+        private string codigo_postal;
+        private string apresentacao;
         private bool aprovado; // false=não aprovado, true = aprovado
-        private string? username;
-        private string? password;
+        private string username;
+        private string password;
 
-        public Utilizador(int id, int userType, string nome, string nif, string cartao_cidadao, string email,
-                          string rua_porta_andar, string cidade, string codigo_postal, string apresentacao,
-                          bool aprovado, string username, string password)
+        public Utilizador(int id, byte userType, string nome, string nif, string cartao_cidadao, string e_mail, 
+                          string rua_porta_andar, string cidade, string codigo_postal, string apresentacao, 
+                          bool aprovado, string username, string password_)
         {
             this.id = id;
             this.userType = userType;
             this.nome = nome;
             this.nif = nif;
             this.cartao_cidadao = cartao_cidadao;
-            this.email = email;
+            this.email = e_mail;
             this.rua_porta_andar = rua_porta_andar;
             this.cidade = cidade;
             this.codigo_postal = codigo_postal;
             this.apresentacao = apresentacao;
             this.aprovado = aprovado;
             this.username = username;
-            this.password = password;
+            this.password = password_;
         }
 
         // TODO: Getters and setters if necessary

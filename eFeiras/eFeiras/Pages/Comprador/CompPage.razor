@@ -1,33 +1,46 @@
-﻿@using eFeiras.Business.Feiras;
+﻿@page "/CompPage"
+
+@using eFeiras.Business.Feiras;
 @using eFeiras.Shared.Comprador;
+@using eFeiras.Business.Categorias;
 
 <h3>Feiras em curso</h3>
 
-<div class="card-deck">
-    @foreach (Feira feira in apresentaFeiras())
-    {
-        <div class="col-md-4">
-            <FeiraCardComp Feira="feira" />
-        </div>
-    }
+<div style="width: 100%">
+    <div class="card-deck">
+        @if(Feiras == null)
+        {
+            <h5>Loading...</h5>
+        }
+        else
+        {
+            foreach (Feira feira in Feiras)
+            {
+                <div class="col-md-4">
+                    <FeiraCardComp Feira="feira" />
+                </div>
+            }
+        }
+    </div>
 </div>
 
 <style>
     .card-deck {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         grid-gap: 16px;
+        width: 100%;
     }
 
     .col-md-4 {
         padding: 0;
+        height: auto;/*220px;*/
+        width: 95%;
     }
 </style>
 
 @code {
-    private ICollection<Feira> apresentaFeiras()
-    {
-        IFeirasFacade ff = new FeirasFacade();
-        return ff.feirasEmCurso();
-    }
+    private ICollection<Feira>? Feiras = new FeirasFacade().feirasEmCurso();
+    private Feira F = new Feira(-1, "Feira de teste", "blablabla", new DateOnly(2022, 12, 14), new DateOnly(2023, 1, 10), "Media/IlustrFeiras/feira_semanal.jpg", 10, new Categoria(-1, "ALIMENTOS"));
+  
 }

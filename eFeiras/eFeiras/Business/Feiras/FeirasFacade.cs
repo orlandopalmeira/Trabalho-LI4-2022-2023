@@ -35,7 +35,13 @@ namespace eFeiras.Business.Feiras
 
         public ICollection<Feira> feirasEmCurso()
         {
-            return (ICollection<Feira>)(this.feiras.values().Where((Feira feira) => feira.emCurso()));
+            ICollection<Feira> result = new HashSet<Feira>();
+            IEnumerable<Feira> aux = this.feiras.values().Where((Feira feira) => feira.emCurso());
+            foreach(Feira f in aux)
+            {
+                result.Add(f);
+            }
+            return result;
         }
     }
 }

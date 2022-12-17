@@ -1,12 +1,9 @@
 ﻿@page "/"
 @layout StartLayout
-@inject NavigationManager UriHelper
+@inject NavigationManager NavigationManager
 
-<PageTitle>Index</PageTitle>
-<!--Logotipo da feira no canto superior esquerdo-->
-<img src="Media/logo.png" alt="logotipo eFeiras" style="width: 100px">
-<!--Este hr é aquela linha que está por baixo do logotipo-->
-<hr width="104.3%" style="position: relative; left: -30px;"/>
+<PageTitle>Bem vindo</PageTitle>
+<LogoOnTop></LogoOnTop>
 <div align="center">
 
     <div id="fundo_formulario_start" align="center">
@@ -41,7 +38,7 @@
                 <!--Parte para o utilizador escrever-->
                 <div class="two"> 
                     <div class="col-sm-10">
-                        <InputText class="form-control" type="password" placeholder="Insira a sua password"
+                        <InputText class="form-control" style="width=80%" type="password" placeholder="Insira a sua password"
                                     @bind-Value="@password" />
                     </div>
                 </div>
@@ -49,7 +46,7 @@
         </div>
 
         <!--Botões de iniciar sessão e criar conta-->
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 15%;/*50px*/">
             <button class="mybtn" style="width: 70%" @onclick=@Test>Iniciar sessão</button> <br />
             <button class="mybtn" style="width: 70%; margin-top: 10px" @onclick=@ToCreateAccount>Criar conta</button>
         </div>
@@ -58,9 +55,20 @@
     <!--Janela de popup usada quando necessário. Por exemplo, indica que a conta fornecida não existe.-->
     <Popup @ref="popupRef"/> 
     <!--<InputFile OnChange="HandleFileSelected" /> Para fazer o upload de um ficheiro-->
-
-
 </div>
+
+<style>
+    #fundo_formulario_start {
+        font-family: Economica;
+        position: center;
+        width: 293px;
+        height: 322px;
+        background: rgba(240, 240, 240, 0.44);
+        border-radius: 25px;
+        margin-top: 20px;
+    }
+</style>
+
 @code {
     private string e_mail = "";
     private string password = "";
@@ -71,14 +79,28 @@
     void Test()
     {
         IUtilizadoresFacade uf = new UtilizadoresFacade();
-        if (uf.existsEmail(e_mail))
+        if (uf.existsEmail(e_mail)) // utilizador existe?
         {
-            popupRef.Show("Esta conta existe", "Credenciais válidas", "35%", "35%");
+            Utilizador user = uf.getUserByEmail(e_mail);
+            if (user.getPassword().Equals(password)) // a palavra passe é correcta?
+            {
+                CurrentUser.setCurrentUser(user); // serve para as outras páginas saberem quem é que está na sessão
+                switch (user.getUserType())
+                {
+                    case 1:// Compradores
+                        NavigationManager.NavigateTo("CompPage");
+                        break;
+                }
+            }
+            else
+            {
+                popupRef.Show("A palavra passe é incorrecta.", "Password inválida", "35%", "35%");
+            }
+            //popupRef.Show("Esta conta existe", "Credenciais válidas", "35%", "35%");
             // redirecionar para a página do utilizador para ver as feiras e assim.
         }
         else
         {
-
             popupRef.Show("Esta conta não existe", "Credenciais inválidas", "35%", "35%");
         }
 
@@ -86,7 +108,7 @@
 
     void ToCreateAccount()
     {
-        UriHelper.NavigateTo("createaccountlogin");
+        NavigationManager.NavigateTo("createaccount");
     }
     /*
      * Para guardar o ficheiro dado pelo utilizador noutra diretoria

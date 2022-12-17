@@ -1,6 +1,8 @@
-﻿@page "/createaccountlogin"
+﻿@page "/createaccount"
 @layout StartLayout
 @inject NavigationManager UriHelper
+
+<LogoOnTop></LogoOnTop>
 
 <h3 style="color: #A7A7A7;font-family: 'Economica';">Crie a sua conta</h3>
 <div id="form_cria_conta" style="font-family: 'Economica';">
@@ -110,12 +112,12 @@
     
     void TryAddAccount()
     {
-        int userType = comprador ? 1 : 2;
+        byte userType = comprador ? (byte)1 : (byte)2;
         bool aprovado = comprador ? true : false;
         IUtilizadoresFacade uf = new UtilizadoresFacade();
         if (uf.validateNewAccount(email, num_cc, nif, username))
         {
-            Utilizador novo = new Utilizador(-1, userType, nome, nif, num_cc, email, rua_porta_andar, cidade, codigo_postal, apresentacao, aprovado, username, password);
+            Utilizador novo = new Utilizador(-1,userType, nome, nif, num_cc, email, rua_porta_andar, cidade, codigo_postal, apresentacao, aprovado, username, password);
             uf.adicionaConta(novo);
             if(userType == 2) // é um vendedor
             {
@@ -126,7 +128,7 @@
                 popupRef.Show("A sua conta foi criada com sucesso. Já pode começar a fazer as suas compras", "Conta de comprador","35%", "35%");
             }
             
-            UriHelper.NavigateTo("");
+            UriHelper.NavigateTo(""); // volta para a página de login
         }
         else
         {

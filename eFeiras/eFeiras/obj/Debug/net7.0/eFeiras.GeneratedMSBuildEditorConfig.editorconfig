@@ -28,12 +28,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXFNob3BwaW5nQ2FydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/VisitaFeiraComp.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXFZpc2l0YUZlaXJhQ29tcC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/CreateAccountLogin.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlQWNjb3VudExvZ2luLnJhem9y
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/CreateAccount.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlQWNjb3VudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/FetchData.razor]
@@ -44,8 +48,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cU3RhcnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/BancaCardComp.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxCYW5jYUNhcmRDb21wLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/FeiraCardComp.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxGZWlyYUNhcmRDb21wLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/General/LogoOnTop.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEdlbmVyYWxcTG9nb09uVG9wLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Popup.razor]

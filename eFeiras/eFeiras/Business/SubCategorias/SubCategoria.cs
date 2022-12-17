@@ -6,7 +6,15 @@ namespace eFeiras.Business.SubCategorias
     { // Acho por bem esta classe ser imutável
         private int id;
         private string nome;
+        private int categoria_id;
         private Categoria categoria;
+
+        public SubCategoria(int id,string nome, int categoria_id)
+        {
+            this.id = id;
+            this.nome = nome;
+            this.categoria_id = categoria_id;
+        }
 
         public SubCategoria(int id, string nome, Categoria categoria)
         {
@@ -18,5 +26,12 @@ namespace eFeiras.Business.SubCategorias
         public int getId() { return this.id; }
         public string getNome() { return this.nome;}
         public Categoria getCategoria() { return this.categoria; }
+
+        public int getCategoriaID() { return this.categoria_id; }
+
+        public void setCategoria(Categoria cat)
+        {
+            this.categoria = cat;
+        }
     }
 }

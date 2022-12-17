@@ -1,13 +1,28 @@
 ﻿@using System.Collections.Generic
 @using eFeiras.Business.Feiras;
+@inject NavigationManager NavigationManager
+<!--Este componente serve para apresentar uma feira dentro daquele retangulozinho quando o utilizador entra.-->
+@if(Feira == null)
+{
+    <h5>Loading...</h5>
+}
+else
+{
+    <div class="card" @onclick="OnClickCard">
+        <div class="card-body">
+            <h5 class="card-title">@Feira.getName()</h5>
+            <!--Colocar a imagem da feira, a data de inicio e de fim e a categoria.-->
+            <img class="ilustr" src="@Feira.getImgPath()" alt="@Feira.getName()" /><br />
+            <div style="height: 5px"></div>
+            <div style="height: auto; width: auto;">
+                <span>Início: @Feira.getDataInicio().ToString("dd-MM-yyyy")</span><br />
+                <span>Fim: @Feira.getDataFim().ToString("dd-MM-yyyy")</span><br />
+                <span>Categoria: @Feira.getCategoria().getNome()</span>
+            </div>
+        </div>
+    </div>
+}
 
-<div class="card" @onclick="OnClickCard">
-  <div class="card-body">
-    <h5 class="card-title">@Feira.getName()</h5>
-    <!--Colocar a imagem da feira, a data de inicio e de fim e a categoria.-->
-
-  </div>
-</div>
 
 <style>
     .card {
@@ -16,6 +31,15 @@
         margin: auto;
         text-align: center;
         font-family: arial;
+        /*Feito por mim*/
+        height: 100%;
+        width: 100%;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+    .card:hover{
+        opacity: 70%;
+        cursor: pointer;
     }
 
     .card-body {
@@ -26,9 +50,13 @@
         font-size: 18px;
     }
 
-    .card-text {
-        font-size: 14px;
+    .ilustr {
+        width: 80%;
+        height: 30%;
+        border-radius: 10px;
+        object-fit: cover;
     }
+
 </style>
 
 @code {
@@ -37,6 +65,8 @@
 
     public void OnClickCard()
     {
-        // TODO: Arranjar maneira de redirecionar para a página da feira.
+        // TODO: Arranjar maneira de redirecionar para a página da feira para ver as bancas e assim...
+        VisitedFeira.setFeira(Feira);
+        NavigationManager.NavigateTo("VisitaFeiraComp");
     }
 }

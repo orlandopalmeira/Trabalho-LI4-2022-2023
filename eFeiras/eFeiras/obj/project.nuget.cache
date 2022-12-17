@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "fDqO61lBDRp2IfjzwrvG3J4OIxXgAgbGmE1FZPVZTAPtGEgGW1Al/O3ZzhU3Xt4koAnaV5eFwtJ9wDOnDwbF1Q==",
+  "dgSpecHash": "JvfIxaYoUCM8r9ufcO9FaGyS/Ic0+ld8p5vUIURtoOKi0Y+yS0P5sRDhm5Z19UV69PzqNH/NpnP+ix6abRFRNg==",
   "success": true,
   "projectFilePath": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\eFeiras.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\orlan\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\orlan\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\orlan\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\orlan\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

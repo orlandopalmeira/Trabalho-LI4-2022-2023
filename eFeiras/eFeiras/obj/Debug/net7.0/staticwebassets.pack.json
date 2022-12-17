@@ -5,6 +5,26 @@
       "PackagePath": "staticwebassets\\eFeiras.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\wwwroot\\Media\\IlustrFeiras\\feira_artesanato.jpg",
+      "PackagePath": "staticwebassets\\Media\\IlustrFeiras\\feira_artesanato.jpg"
+    },
+    {
+      "Id": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\wwwroot\\Media\\IlustrFeiras\\feira_do_livro2022.jpg",
+      "PackagePath": "staticwebassets\\Media\\IlustrFeiras\\feira_do_livro2022.jpg"
+    },
+    {
+      "Id": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\wwwroot\\Media\\IlustrFeiras\\feira_roupa_usada.jpg",
+      "PackagePath": "staticwebassets\\Media\\IlustrFeiras\\feira_roupa_usada.jpg"
+    },
+    {
+      "Id": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\wwwroot\\Media\\IlustrFeiras\\feira_semanal.jpg",
+      "PackagePath": "staticwebassets\\Media\\IlustrFeiras\\feira_semanal.jpg"
+    },
+    {
+      "Id": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\wwwroot\\Media\\IlustrFeiras\\feira_tecnologia.jpg",
+      "PackagePath": "staticwebassets\\Media\\IlustrFeiras\\feira_tecnologia.jpg"
+    },
+    {
       "Id": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\wwwroot\\Media\\logo.png",
       "PackagePath": "staticwebassets\\Media\\logo.png"
     },

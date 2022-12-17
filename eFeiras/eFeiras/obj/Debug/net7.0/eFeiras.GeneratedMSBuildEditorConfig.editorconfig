@@ -24,8 +24,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXENvbXBQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/ShoppingCart.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXFNob3BwaW5nQ2FydC5yYXpvcg==
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/VisitaBancaComp.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXFZpc2l0YUJhbmNhQ29tcC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/VisitaFeiraComp.razor]
@@ -54,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/FeiraCardComp.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxGZWlyYUNhcmRDb21wLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/ProductCardComp.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxQcm9kdWN0Q2FyZENvbXAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/General/LogoOnTop.razor]

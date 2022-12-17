@@ -27,6 +27,7 @@ namespace eFeiras.Business.Feiras
             this.img_path= imagem;
             this.limite_bancas = limite_bancas;
             this.categoria_id = categoria_id;
+            this.bancas = new List<Banca>(limite_bancas);
         }
         
         public Feira(int id, string titulo, string descricao, DateOnly data_inicio, DateOnly data_fim, string img_path, int limite_bancas, Categoria cat, ICollection<Banca> bncs) { 
@@ -109,12 +110,7 @@ namespace eFeiras.Business.Feiras
 
         public List<Banca> getBancas()
         {
-            List<Banca> result = new List<Banca>(this.bancas.Count);
-            foreach(Banca b in this.bancas)
-            {
-                result.Add(b); // b.clone()??
-            }
-            return result;
+            return this.bancas.Select(x => x).ToList(); // x.clone()?
         }
 
         public bool addBanca(Banca banca)

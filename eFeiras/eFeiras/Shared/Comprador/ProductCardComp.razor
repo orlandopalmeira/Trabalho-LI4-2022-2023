@@ -1,0 +1,27 @@
+﻿@using eFeiras.Business.Produtos;
+
+@if(Produto != null)
+{
+    <tr class="prodCard">
+        <td><img src="@Produto.getImg_path()" style="object-fit: cover; height: 50px; width: 70px; border-radius: 7px"/></td>
+        <td>@Produto.getNome()</td>
+        <td><a href="TODO_VER_DETALHES">Ver detalhes</a></td>
+        <td>@Produto.getPreco().ToString() €</td>
+        <td>Cenas</td>
+    </tr>
+}
+
+<style>
+    table .prodCard:not(:first-child):not(:last-child){
+        border-top: 1px solid #ccc;
+    }
+    .prodCard{
+        border-top: 5px;
+        border-bottom: 5px;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Produto? Produto { get; set; }
+}

@@ -31,17 +31,16 @@ namespace eFeiras.Business.Produtos
             this.subcategoria_id = sc.getId();
         }
 
-        public Produto(int id, string nome, string descricao, float preco, int qnt_disp, string img_path,
-                       int vendedor_id, int subcat_id) // construtor para o DAPPER
+        public Produto(System.Int32 id, System.String nome, System.String descricao, System.Decimal preco, System.Int32 quantidade_disponivel, System.String imagem, System.Int32 Utilizador_id, System.Int32 SubCategoria_id) // construtor para o DAPPER
         {
             this.id = id;
             this.nome = nome;
             this.descricao = descricao;
-            this.preco = preco;
-            this.quantidade_disponivel= qnt_disp;
-            this.img_path = img_path;
-            this.vendedor_id = vendedor_id;
-            this.subcategoria_id = subcat_id;
+            this.preco = Convert.ToSingle(preco);
+            this.quantidade_disponivel= quantidade_disponivel;
+            this.img_path = imagem;
+            this.vendedor_id = Utilizador_id;
+            this.subcategoria_id = SubCategoria_id;
         }
 
 

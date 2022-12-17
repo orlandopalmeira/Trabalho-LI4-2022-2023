@@ -18,6 +18,8 @@ namespace eFeiras.Business.Bancas
             this.feira_id = Feira_id;
             this.vendedor_id = Utilizador_id;
             this.titulo = titulo;
+            this.ids_produtos = new List<int>();
+            this.produtos = new List<Produto>();
         }
 
         public int getFeiraId()
@@ -63,6 +65,11 @@ namespace eFeiras.Business.Bancas
             this.ids_produtos ??= new List<int>();
             this.produtos.Add(p);
             this.ids_produtos.Add(p.getID());
+        }
+
+        public List<Produto> getProdutos()
+        {
+            return this.produtos.Select(x => x).ToList();
         }
 
         public override int GetHashCode()

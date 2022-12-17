@@ -454,7 +454,7 @@ namespace eFeiras.Data
                     {
                         Feira feira = con.QueryFirst<Feira>($"SELECT * FROM dbo.Feira WHERE id='{banca.getFeiraId()}'");
                         Utilizador vendedor = getUtilizador(banca.getVendedorId());
-                        IEnumerable<int> prodsIDS = con.Query<int>($"SELECT * FROM dbo.banca_has_produto WHERE Feira_id = '{banca.getFeiraId()}' AND Utilizador_id = '{banca.getVendedorId()}'");
+                        IEnumerable<int> prodsIDS = con.Query<int>($"SELECT Produto_id FROM dbo.banca_has_produto WHERE Feira_id = '{banca.getFeiraId()}' AND Utilizador_id = '{banca.getVendedorId()}'");
                         foreach (int prodID in prodsIDS)
                         {
                             banca.addProduto(getProduto(prodID));

@@ -49,9 +49,56 @@ insert into dbo.Feira (titulo,descricao,data_inicio,data_fim,imagem,limite_banca
 	('Feira de artesanato','Feira de venda de produtos personalizados feitos manualmente','2022-12-14','2023-01-10','Media/IlustrFeiras/feira_artesanato.jpg','10','5');
 
 SET IDENTITY_INSERT dbo.Banca ON; -- sou obrigado a fazer isto, não sei porquê :)
--- select * from dbo.Banca where Feira_id = '1';
 insert into dbo.Banca (Feira_id,Utilizador_id,titulo) values
 	('1','5','A Banca do Sr.Alberto'),
 	('1','6','Frutas e Companhia'),
 	('1','7','Banca Gourmet');
 SET IDENTITY_INSERT dbo.Banca OFF;
+
+INSERT INTO dbo.Produto (nome, descricao, preco, quantidade_disponivel, imagem, Utilizador_id, SubCategoria_id)
+VALUES 
+	('Batata doce', 'Batata doce, unidade: 1Kg', 4.50, 20, '/Media/uploads/prod1.jpg', 5, 1),
+	('Cenoura', 'Cenoura biológica, unidade: 1Kg', 3.50, 15, '/Media/uploads/prod2.jpg', 5, 1),
+	('Beringela', 'Beringela, unidade: 1Kg', 2.50, 10, '/Media/uploads/prod3.jpg', 5, 1),
+	('Abóbora', 'Abóbora, unidade: 1Kg', 5.00, 15, '/Media/uploads/prod4.jpg', 5, 1),
+	('Espargos', 'Espargos, unidade: 1Kg', 6.00, 10, '/Media/uploads/prod5.jpg', 5, 1),
+	('Maçã verde', 'Maçã verde, unidade: 1Kg', 1.50, 25, '/Media/uploads/prod6.jpg', 6, 2),
+	('Pêra rocha', 'Pêra rocha, unidade: 1Kg', 2.00, 20, '/Media/uploads/prod7.jpg', 6, 2),
+	('Kiwi', 'Kiwi, unidade: 1Kg', 1.75, 15, '/Media/uploads/prod8.jpg', 6, 2),
+	('Manga', 'Manga, unidade: 1Kg', 2.25, 10, '/Media/uploads/prod9.jpg', 6, 2),
+	('Ameixa', 'Ameixa, unidade: 1Kg', 1.50, 15, '/Media/uploads/prod10.jpg', 6, 2),
+	('Amendoins', 'Amendoins descascados, unidade: 250g', 3.50, 20, '/Media/uploads/prod11.jpg', 7, 3),
+	('Pistácios', 'Pistácios descascados, unidade: 250g', 4.00, 15, '/Media/uploads/prod12.jpg', 7, 3),
+	('Nozes', 'Nozes frescas, unidade: 250g', 3.75, 10, '/Media/uploads/prod13.jpg', 7, 3),
+	('Avelãs', 'Avelãs torradas e salgadas, unidade: 250g', 4.25, 15, '/Media/uploads/prod14.jpg', 7, 3),
+	('Castanhas', 'Castanhas frescas, unidade: 250g', 3.50, 10, '/Media/uploads/prod15.jpg', 7, 3);
+
+
+insert into dbo.banca_has_produto (Feira_id,Utilizador_id,Produto_id)
+values
+	('1','5','1'),
+	('1','5','2'),
+	('1','5','3'),
+	('1','5','4'),
+	('1','5','5'),
+	('1','6','6'),
+	('1','6','7'),
+	('1','6','8'),
+	('1','6','9'),
+	('1','6','10'),
+	('1','7','11'),
+	('1','7','12'),
+	('1','7','13'),
+	('1','7','14'),
+	('1','7','15');
+
+
+
+SELECT f.titulo as 'Feira' , b.titulo as 'Banca', u.nome as 'Vendedor', p.nome as 'Produto', p.descricao as 'ProdDesc', p.preco as 'Preço'
+FROM dbo.Banca b
+INNER JOIN dbo.banca_has_produto bp ON b.Utilizador_id = bp.Utilizador_id AND b.Feira_id = bp.Feira_id
+INNER JOIN dbo.Produto p ON bp.Produto_id = p.id
+INNER JOIN dbo.Utilizador u on b.Utilizador_id = u.id
+INNER JOIN dbo.Feira f ON f.id = b.Feira_id
+;
+

@@ -3,7 +3,7 @@
 
 @if(Banca != null)
 {
-    <div class="cardBanca">
+    <div class="cardBanca" @onclick="OnClickCard">
         <div style="display: flex; align-items: center; width: 100%">
             <h5 style="font-size:30px; padding: 10px">@Banca.getTitulo()</h5>
         </div>
@@ -21,6 +21,7 @@
         width: 98%;
         height: 80px;
         background-color: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     .cardBanca:hover{
@@ -36,6 +37,8 @@
 
     private void OnClickCard()
     {
+        VisitedBanca.setBanca(Banca);
         // redirecionar para a página da banca  
+        NavigationManager.NavigateTo("VisitaBancaComp");
     }
 }

@@ -28,8 +28,9 @@ namespace eFeiras.Data.DAOS
             // para inserir a compra
             string s_cmd = "INSERT INTO dbo.Compra (montante,data,Utilizador_id) VALUES ('" +
                             value.getMontante() + "','" + value.getDataStr("yyyy-MM-dd HH:mm:ss") + "','" +
-                            value.getCompradorID() + "'); SELECT SCOPE_IDENTITY() AS chave_compra;";
-            string s_cmd2 = "INSERT INTO dbo.compra_has_produto (Compra_id,Produto_id,quantidade) VALUES ('@compra_id','@produto_id','@quantidade')";
+                            value.getCompradorID() + "'); SELECT SCOPE_IDENTITY() AS chave_compra;"; // insere compra
+            string s_cmd2 = "INSERT INTO dbo.compra_has_produto (Compra_id,Produto_id,quantidade) VALUES ('@compra_id','@produto_id','@quantidade')"; // associa a compra aos produtos
+            string s_cmd3 = "UPDATE dbo.Produto SET quantidade_disponivel - '@qnt_comp' WHERE id = '@compra_id'"; // actualiza a quantidade disponível dos produtos da compra
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
@@ -39,7 +40,8 @@ namespace eFeiras.Data.DAOS
                     foreach (Pair<int, int> p in value.getIdsProdutosQuantidade()) // insere as relações entre os produtos e a compra
                     {
                         var parameters = new { compra_id = idCompra, produto_id = p.getX(), quantidade = p.getY() };
-                        con.Execute(s_cmd2, parameters);
+                        con.Execute(s_cmd2, parameters); // associa o produto a compra
+                        con.Execute(s_cmd3,new { qnt_comp = p.getY(), compra_id = idCompra}); // actualiza a quantidade do produto comprado
                     }
                 }
             }

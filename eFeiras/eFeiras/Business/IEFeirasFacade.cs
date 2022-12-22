@@ -1,6 +1,7 @@
 ﻿using eFeiras.Business.Feiras;
 using eFeiras.Business.Utilizadores;
 using eFeiras.Business.Produtos;
+using eFeiras.Business.Compras;
 
 namespace eFeiras.Business
 {
@@ -23,5 +24,8 @@ namespace eFeiras.Business
 
         public int getQuantidadeDisponivelProduto(Produto produto);
 
+        // Compras
+
+        public void addCompra(Compra compra);
     }
 }

@@ -43,7 +43,7 @@
             return this.id;
         }
 
-        public int getUserType()
+        public byte getUserType()
         {
             return this.userType;
         }

@@ -1,4 +1,5 @@
-﻿using eFeiras.Business.Feiras;
+﻿using eFeiras.Business.Compras;
+using eFeiras.Business.Feiras;
 using eFeiras.Business.Produtos;
 using eFeiras.Business.Utilizadores;
 using eFeiras.Data;
@@ -57,6 +58,11 @@ namespace eFeiras.Business
         }
 
         // Compras
+
+        public void addCompra(Compra compra)
+        {
+            this.db.addCompra(compra);
+        }
 
         // Bancas
 

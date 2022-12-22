@@ -82,6 +82,16 @@ namespace eFeiras.TransferData
         {
             return changeQuantidade(idprod, false);
         }
+        
+        public static void updateQuantidade(Produto prod, int new_quantidade)
+        {
+            if (produtos.ContainsKey(prod.getID()))
+            {
+                Pair<Produto, int> novo = new Pair<Produto, int>(prod, new_quantidade);
+                produtos.Remove(prod.getID());
+                produtos.Add(prod.getID(), novo);
+            }
+        }
 
         public static void setComprador(Utilizador u) 
         {

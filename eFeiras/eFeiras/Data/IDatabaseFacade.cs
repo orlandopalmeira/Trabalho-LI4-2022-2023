@@ -90,7 +90,7 @@ namespace eFeiras.Data
 
         public SubCategoria getSubCategoria(int subcategoriaid);
 
-        public void addCategoria(SubCategoria subcategoria);
+        public void addSubCategoria(SubCategoria subcategoria);
 
         public void removeSubCategoria(int subcategoriaid);
 

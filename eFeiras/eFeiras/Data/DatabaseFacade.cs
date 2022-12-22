@@ -218,7 +218,7 @@ namespace eFeiras.Data
             return this.subcategoriaDAO.get(subcategoriaid);
         }
 
-        public void addCategoria(SubCategoria subcategoria)
+        public void addSubCategoria(SubCategoria subcategoria)
         {
             this.subcategoriaDAO.put(subcategoria.getId(), subcategoria);
         }

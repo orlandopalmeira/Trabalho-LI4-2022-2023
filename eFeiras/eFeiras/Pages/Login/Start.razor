@@ -87,10 +87,16 @@
                 CurrentUser.setCurrentUser(user); // serve para as outras páginas saberem quem é que está na sessão
                 switch (user.getUserType())
                 {
-                    case 1:// Compradores
+                    case 0: // administradores
+                        break;
+
+                    case 1: // Compradores
                         CarrinhoCompras.clear(); // faz refresh ao carrinho de compras
-                        CarrinhoCompras.setComprador(user); 
-                        NavigationManager.NavigateTo("CompPage");
+                        CarrinhoCompras.setComprador(user); // diz ao carrinho de compras quem tem sessão iniciada
+                        NavigationManager.NavigateTo("CompPage"); // vai para a página inicial do comprador
+                        break;
+
+                    case 2: // vendedores
                         break;
                 }
             }
@@ -98,8 +104,6 @@
             {
                 popupRef.Show("A palavra passe é incorrecta.", "Password inválida", "35%", "35%");
             }
-            //popupRef.Show("Esta conta existe", "Credenciais válidas", "35%", "35%");
-            // redirecionar para a página do utilizador para ver as feiras e assim.
         }
         else
         {

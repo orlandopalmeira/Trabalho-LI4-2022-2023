@@ -34,11 +34,14 @@
         <div style="height: 5px; border: 0px; padding: 0px; margin: 0px;"></div>
         <hr style="margin:5px; margin-left: 0px; margin-right: 0px">
     </div>
+    <div style="height: 20px"></div>
+    <button class="mybtn" style="width: 150px" @onclick="openCCPopup">Check-out</button>
 }
 else // o carrinho está vazio
 {
     <h5>Ainda não tem produtos no seu carrinho de compras.</h5>
 }
+
 
 <style>
     .scrollable {
@@ -56,9 +59,34 @@ else // o carrinho está vazio
     }
 </style>
 
+<CreditCardPopup @ref="ccpref" />
+
+
 @code {
-    public void Refresh()
+    private CreditCardPopup? ccpref;
+
+    public void Refresh() // Actualiza a página do carrinho de compras para o estado mais actual.
     {
         StateHasChanged();
+    }
+
+    public void openCCPopup()
+    {
+        ccpref.Show();
+        StateHasChanged();
+    }
+
+    private void CheckOut() // efectua a compra
+    {
+        IEFeirasFacade ef = new eFeirasFacade();
+        ICollection<Pair<Produto, int>> info = CarrinhoCompras.getShoppingCartInfo();
+        ICollection<Produto> outOfStock = new List<Produto>();
+        foreach(Pair<Produto,int> p in info)
+        {
+            if(ef.getQuantidadeDisponivelProduto(p.getX().getID()) < p.getY()) // o comprador que mais do que o stock existente
+            {
+                outOfStock.Add(p.getX());
+            }
+        }
     }
 }

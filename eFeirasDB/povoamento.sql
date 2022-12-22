@@ -102,3 +102,8 @@ INNER JOIN dbo.Utilizador u on b.Utilizador_id = u.id
 INNER JOIN dbo.Feira f ON f.id = b.Feira_id
 ;
 
+select * from dbo.Utilizador where e_mail='orlandopalmeira51@gmail.com'
+
+
+
+

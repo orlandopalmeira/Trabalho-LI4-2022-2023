@@ -1,0 +1,92 @@
+﻿@using eFeiras.Business.Produtos;
+
+<div style="height: 100%">
+    <button class="mybtn" @onclick="DecrementQuantity">-</button>
+    <span style="width: 30px">@Quantity</span>
+    <button class="mybtn" @onclick="IncrementQuantity">+</button>
+</div>
+<Popup @ref="popupRef" />
+
+<style>
+    button {
+        color: white;
+        background-color: #007bff;
+        border-color: #007bff;
+        height: 20px;
+        width: 30px;
+    }
+
+    button:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    button:focus {
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+    }
+
+</style>
+
+@code {
+    [Parameter]
+    public int Quantity { get; set; }
+
+    [Parameter]
+    public Produto Produto { get; set; }
+
+    [Parameter]
+    public IDictionary<Produto, int> Para_o_carrinho { get; set; }
+
+    private IEFeirasFacade ef = new eFeirasFacade();
+
+    private Popup? popupRef;
+
+    private void IncrementQuantity()
+    {
+        int pq = ef.getQuantidadeDisponivelProduto(Produto);
+        if(Quantity < pq) //  pode incrementar
+        {
+            Quantity++;
+            if (Para_o_carrinho.ContainsKey(Produto))
+            {
+                Para_o_carrinho[Produto] = Quantity;
+            }
+            else
+            {
+                Para_o_carrinho.Add(Produto, Quantity);
+            }
+        }
+        else // não pode incrementar
+        {
+            popupRef.Show($"Só existem {pq} unidades de \"{Produto.getNome()}\".", "Quantidade indisponível", "35%", "35%");
+            Quantity = pq;
+        }
+    }
+
+    private void DecrementQuantity()
+    {
+        int pg = ef.getQuantidadeDisponivelProduto(Produto);
+        if(Quantity > 0)
+        {
+            if (Quantity - 1 > pg)
+            {
+                Quantity = pg;
+            }
+            else
+            {
+                Quantity--;
+            }
+            Para_o_carrinho[Produto] = Quantity;
+        }
+    }
+
+    private void OnChange()
+    {
+        int pq = ef.getQuantidadeDisponivelProduto(Produto);
+        if (Quantity >= pq)
+        {
+            popupRef.Show($"Só existem {pq} unidades de \"{Produto.getNome()}\".", "Quantidade indisponível", "35%", "35%");
+            Quantity = pq;
+        }
+    }
+}

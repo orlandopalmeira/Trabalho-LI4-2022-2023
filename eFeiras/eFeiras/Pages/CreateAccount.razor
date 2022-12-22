@@ -1,6 +1,6 @@
 ﻿@page "/createaccount"
 @layout StartLayout
-@inject NavigationManager UriHelper
+@inject NavigationManager NavigationManager
 
 <LogoOnTop></LogoOnTop>
 
@@ -114,11 +114,11 @@
     {
         byte userType = comprador ? (byte)1 : (byte)2;
         bool aprovado = comprador ? true : false;
-        IUtilizadoresFacade uf = new UtilizadoresFacade();
-        if (uf.validateNewAccount(email, num_cc, nif, username))
+        IEFeirasFacade ef = new eFeirasFacade();
+        if (ef.validateNewAccount(email, num_cc, nif, username))
         {
             Utilizador novo = new Utilizador(-1,userType, nome, nif, num_cc, email, rua_porta_andar, cidade, codigo_postal, apresentacao, aprovado, username, password);
-            uf.adicionaConta(novo);
+            ef.adicionaConta(novo);
             if(userType == 2) // é um vendedor
             {
                 popupRef.Show("Como criou uma conta de vendedor, ficará pendente de aprovação. Terá de aguardar até a sua conta ser aprovada por um dos nossos administradores.", "Conta de vendedor", "35%", "35%");
@@ -128,7 +128,7 @@
                 popupRef.Show("A sua conta foi criada com sucesso. Já pode começar a fazer as suas compras", "Conta de comprador","35%", "35%");
             }
             
-            UriHelper.NavigateTo(""); // volta para a página de login
+            NavigationManager.NavigateTo(""); // volta para a página de login
         }
         else
         {

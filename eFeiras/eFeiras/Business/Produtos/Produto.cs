@@ -80,6 +80,15 @@ namespace eFeiras.Business.Produtos
             return this.id.GetHashCode();
         }
 
+        public override bool Equals(object? obj)
+        { // Gerado automaticamente pelo Visual Studio
+            return obj is Produto produto &&
+                   id == produto.id;
+        }
 
+        public override string ToString()
+        {
+            return this.nome;
+        }
     }
 }

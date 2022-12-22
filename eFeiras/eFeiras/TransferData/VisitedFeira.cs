@@ -11,7 +11,7 @@ namespace eFeiras.TransferData
         private VisitedFeira() { }
 
 
-        public static void setFeira(Feira feira)
+        public static void setFeira(Feira? feira)
         {
             visited = feira;
         }

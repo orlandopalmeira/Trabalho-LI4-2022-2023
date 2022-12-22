@@ -1,0 +1,51 @@
+﻿@using eFeiras.Business.Produtos;
+@using eFeiras.Pages.Comprador;
+
+@inject NavigationManager NavigationManager
+
+@if (CartElement != null)
+{
+    <tr class="prodCardCart">
+        <td><img src="@CartElement.getX().getImg_path()" style="object-fit: cover; height: 50px; width: 70px; border-radius: 7px" /></td>
+        <td>@CartElement.getX().getNome()</td>
+        <td>@CartElement.getX().getPreco().ToString() €</td>
+        <td>@CartElement.getY()</td>
+        <td>@(CartElement.getX().getPreco()*CartElement.getY()) €</td>
+        <td>
+            <button @onclick="DeleteProduct" style="height: 100%">
+                <i class="oi oi-trash"></i>
+            </button>
+        </td>
+    </tr>
+}
+
+<style>
+    table .prodCardCart:not(:first-child):not(:last-child) {
+        border-top: 1px solid #ccc;
+    }
+
+    .prodCardCart {
+        border-top: 5px;
+        border-bottom: 5px;
+    }
+    td button {
+        border: 0px;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Pair<Produto, int>? CartElement { get; set; }
+
+    [Parameter]
+    public EventCallback Event { get; set; }
+
+    public void DeleteProduct()
+    {
+        if(CartElement != null)
+        {
+            CarrinhoCompras.removeProduto(CartElement.getX().getID());
+        }
+        Event.InvokeAsync(null);
+    }
+}

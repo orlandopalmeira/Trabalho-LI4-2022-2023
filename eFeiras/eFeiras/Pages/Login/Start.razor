@@ -78,16 +78,18 @@
 
     void Test()
     {
-        IUtilizadoresFacade uf = new UtilizadoresFacade();
-        if (uf.existsEmail(e_mail)) // utilizador existe?
+        IEFeirasFacade ef = new eFeirasFacade();
+        if (ef.existsEmail(e_mail)) // utilizador existe?
         {
-            Utilizador user = uf.getUserByEmail(e_mail);
+            Utilizador user = ef.getUtilizadorWithEmail(e_mail);
             if (user.getPassword().Equals(password)) // a palavra passe é correcta?
             {
                 CurrentUser.setCurrentUser(user); // serve para as outras páginas saberem quem é que está na sessão
                 switch (user.getUserType())
                 {
                     case 1:// Compradores
+                        CarrinhoCompras.clear(); // faz refresh ao carrinho de compras
+                        CarrinhoCompras.setComprador(user); 
                         NavigationManager.NavigateTo("CompPage");
                         break;
                 }

@@ -8,7 +8,7 @@ namespace eFeiras.TransferData
 
         private VisitedBanca() { }
 
-        public static void setBanca(Banca banca)
+        public static void setBanca(Banca? banca)
         {
             visited = banca;
         }

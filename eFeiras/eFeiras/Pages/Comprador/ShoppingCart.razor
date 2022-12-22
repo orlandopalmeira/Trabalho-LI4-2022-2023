@@ -1,0 +1,64 @@
+﻿@page "/ShoppingCart"
+
+@using eFeiras.Business.Produtos;
+@using eFeiras.Shared.Comprador;
+
+<h3>O seu carrinho</h3>
+
+@if(CarrinhoCompras.quantosProdutos() > 0) // tem produtos no carrinho
+{
+    ICollection<Pair<Produto, int>> info = CarrinhoCompras.getShoppingCartInfo();
+    <div class="scrollable">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th></th>
+                    <th>Preço(€/un)</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(Pair<Produto,int> e in info)
+                {
+                    <ProductCardCart CartElement="e" Event="Refresh" />
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="height: 20px"></div> <!--Espaçamento-->
+    <div style="float: right; width: 200px">
+        <span>Total: @CarrinhoCompras.custoTotal() € </span>
+        <div style="height: 5px; border: 0px; padding: 0px; margin: 0px;"></div>
+        <hr style="margin:5px; margin-left: 0px; margin-right: 0px">
+    </div>
+}
+else // o carrinho está vazio
+{
+    <h5>Ainda não tem produtos no seu carrinho de compras.</h5>
+}
+
+<style>
+    .scrollable {
+        overflow-y: auto;
+        height: auto;
+        max-height: 350px;
+        width: 100%;
+        background-color: #EEEEEE;
+        border-radius: 19px;
+        padding: 15px;
+    }
+
+    .scrollable table {
+        width: 100%;
+    }
+</style>
+
+@code {
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+}

@@ -3,6 +3,7 @@
 @using eFeiras.Business.Bancas;
 @using eFeiras.Business.Produtos;
 @using eFeiras.Shared.Comprador;
+@inject NavigationManager NavigationManager
 
 <div class="info">
     <div id="left">
@@ -38,11 +39,14 @@
                 <tbody>
                     @foreach (Produto p in prods)
                     {
-                        <ProductCardComp Produto="p" />
+                        <ProductCardComp Produto="p" Para_o_carrinho="para_o_carrinho" />
                     }
                 </tbody>
              </table>
         </div>
+        <div style="height: 20px"></div>
+        <button class="mybtn" style="width: 150px" @onclick="GoBack">Voltar</button>
+        <button class="mybtn" style="width: 150px; float: right" @onclick="addToShoppingCart">Adicionar ao carrinho</button>
     }
     else
     {
@@ -82,6 +86,7 @@
     .scrollable{
         overflow-y: auto;
         height: auto;
+        max-height: 350px;
         width: 100%;
         background-color: #EEEEEE;
         border-radius: 19px;
@@ -96,4 +101,20 @@
 @code {
     private Feira Feira = VisitedFeira.getFeira();
     private Banca Banca = VisitedBanca.getBanca();
+    private IDictionary<Produto, int> para_o_carrinho = new Dictionary<Produto, int>();
+
+    private void GoBack()
+    {
+        VisitedBanca.setBanca(null);
+        NavigationManager.NavigateTo("VisitaFeiraComp");
+    }
+
+    private void addToShoppingCart()
+    {
+        foreach(KeyValuePair<Produto,int> elem in para_o_carrinho)
+        {
+            CarrinhoCompras.addProduto(elem.Key, elem.Value);
+        }
+        NavigationManager.NavigateTo("VisitaFeiraComp");
+    }
 }

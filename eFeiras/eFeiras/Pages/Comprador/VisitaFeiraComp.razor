@@ -2,6 +2,7 @@
 @using eFeiras.Business.Feiras;
 @using eFeiras.Business.Bancas;
 @using eFeiras.Shared.Comprador;
+@inject NavigationManager NavigationManager
 
 @if(Feira == null)
 {
@@ -33,16 +34,18 @@ else
         <div class="scrollable">
             @foreach(Banca b in bancas)
             {
-                <BancaCardComp Banca="b"></BancaCardComp>
+                <BancaCardComp Banca="b"/>
             }
         </div>
+        
     }
     else
     {
         <h5>Esta feira ainda não tem bancas abertas.</h5>
     }
-
 }
+<div style="height: 20px"></div> <!--Espaçamento-->
+<button class="mybtn" style="width: 150px" @onclick="GoBack">Voltar</button>
 
 
 <style>
@@ -76,4 +79,10 @@ else
 
 @code {
     private Feira? Feira = VisitedFeira.getFeira();
+
+    private void GoBack()
+    {
+        VisitedFeira.setFeira(null);
+        NavigationManager.NavigateTo("CompPage");
+    }
 }

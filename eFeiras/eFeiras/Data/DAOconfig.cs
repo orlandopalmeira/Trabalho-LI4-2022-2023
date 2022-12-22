@@ -5,7 +5,7 @@ namespace eFeiras.Data
     /// <summary>
     /// Esta classe armazena os dados de acesso à base de dados.
     /// </summary>
-    public class DAOconfig
+    internal class DAOconfig
     {
         public const string USER = "orlando";
         public const string PASSWORD = "orlando912";

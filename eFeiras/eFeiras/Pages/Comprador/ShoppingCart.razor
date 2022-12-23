@@ -84,13 +84,13 @@ else // o carrinho está vazio
             if(ef.getQuantidadeDisponivelProduto(p.getX().getID()) < p.getY()) // o comprador quer mais do que o stock existente
             {
                 outOfStock.Add(p.getX());
-                aux += $"{p.getX().getNome}, ";
+                aux += $"{p.getX().getNome()}, ";
             }
         }
         if(outOfStock.Count > 0) // existem produtos cuja quantidade pretendida ultrapassa a quantidade disponível
         {
             aux = aux.Substring(0, aux.Length - 2);
-            pref.Show($"As quantidades disponíveis dos seguintes produtos: {aux} não conseguem satizfazer as suas pretensões. O seu carrinho de compras será atualizado com as quantidades máximas existentes.", "Produtos indisponíveis", "35%", "35%");
+            pref.Show($"As quantidades disponíveis dos seguintes produtos: {aux} não conseguem satisfazer as suas pretensões. O seu carrinho de compras será atualizado com as quantidades máximas existentes.", "Produtos indisponíveis", "35%", "35%");
             foreach(Produto p in outOfStock)
             {
                 CarrinhoCompras.updateQuantidade(p, ef.getQuantidadeDisponivelProduto(p.getID()));
@@ -101,6 +101,7 @@ else // o carrinho está vazio
         {
             ccpref.Show("25%", "35%");
             StateHasChanged();
+            pref.Show("A sua compra foi realizada com sucesso!", "Obrigado", "35%", "35%");
         }
     }
 }

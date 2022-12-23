@@ -1,6 +1,7 @@
 ﻿using eFeiras.Business.Produtos;
 using eFeiras.Business.Utilizadores;
 using eFeiras.Utils;
+using System.Runtime.CompilerServices;
 
 namespace eFeiras.TransferData
 {
@@ -121,6 +122,11 @@ namespace eFeiras.TransferData
                 res += p.getX().getPreco() * p.getY();
             }
             return res;
+        }
+
+        public static void clearCarrinho()
+        {
+            CarrinhoCompras.produtos.Clear();
         }
 
         public static void clear()

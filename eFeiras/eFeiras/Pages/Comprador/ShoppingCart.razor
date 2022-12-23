@@ -35,13 +35,16 @@
         <hr style="margin:5px; margin-left: 0px; margin-right: 0px">
     </div>
     <div style="height: 20px"></div>
-    <button class="mybtn" style="width: 150px" @onclick="openCCPopup">Check-out</button>
+    <button class="mybtn" style="width: 150px" @onclick="CheckOut">Check-out</button>
 }
 else // o carrinho está vazio
 {
     <h5>Ainda não tem produtos no seu carrinho de compras.</h5>
 }
 
+
+<CreditCardPopup @ref="ccpref" Event="Refresh"/>
+<Popup @ref="pref"/>
 
 <style>
     .scrollable {
@@ -59,20 +62,14 @@ else // o carrinho está vazio
     }
 </style>
 
-<CreditCardPopup @ref="ccpref" />
 
 
 @code {
     private CreditCardPopup? ccpref;
+    private Popup? pref;
 
     public void Refresh() // Actualiza a página do carrinho de compras para o estado mais actual.
     {
-        StateHasChanged();
-    }
-
-    public void openCCPopup()
-    {
-        ccpref.Show();
         StateHasChanged();
     }
 
@@ -81,12 +78,29 @@ else // o carrinho está vazio
         IEFeirasFacade ef = new eFeirasFacade();
         ICollection<Pair<Produto, int>> info = CarrinhoCompras.getShoppingCartInfo();
         ICollection<Produto> outOfStock = new List<Produto>();
+        string aux = ""; // para guardar os nomes dos produtos indisponíveis
         foreach(Pair<Produto,int> p in info)
         {
-            if(ef.getQuantidadeDisponivelProduto(p.getX().getID()) < p.getY()) // o comprador que mais do que o stock existente
+            if(ef.getQuantidadeDisponivelProduto(p.getX().getID()) < p.getY()) // o comprador quer mais do que o stock existente
             {
                 outOfStock.Add(p.getX());
+                aux += $"{p.getX().getNome}, ";
             }
+        }
+        if(outOfStock.Count > 0) // existem produtos cuja quantidade pretendida ultrapassa a quantidade disponível
+        {
+            aux = aux.Substring(0, aux.Length - 2);
+            pref.Show($"As quantidades disponíveis dos seguintes produtos: {aux} não conseguem satizfazer as suas pretensões. O seu carrinho de compras será atualizado com as quantidades máximas existentes.", "Produtos indisponíveis", "35%", "35%");
+            foreach(Produto p in outOfStock)
+            {
+                CarrinhoCompras.updateQuantidade(p, ef.getQuantidadeDisponivelProduto(p.getID()));
+            }
+            StateHasChanged();
+        }
+        else
+        {
+            ccpref.Show("25%", "35%");
+            StateHasChanged();
         }
     }
 }

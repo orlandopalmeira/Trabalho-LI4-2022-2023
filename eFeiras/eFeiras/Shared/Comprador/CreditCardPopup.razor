@@ -1,4 +1,7 @@
-﻿@{
+﻿@using eFeiras.Business.Produtos;
+@using eFeiras.Business.Compras;
+
+@{
     var showClass = IsVisible ? "d-block" : "d-none";
 }
 
@@ -37,6 +40,9 @@
     [Parameter]
     public bool IsVisible { get; set; }
 
+    [Parameter]
+    public EventCallback Event { get; set; }
+
     private string top = "35%";
     private string left = "35%";
 
@@ -62,7 +68,18 @@
 
     private void EfetuarPagamento()
     {
-        
+        if(Number != null && CVV != null && Validade != null && NomeTitular != null)
+        {    
+            IEFeirasFacade ef = new eFeirasFacade();
+            CreditCartInfo.setData(Number, CVV, Validade, NomeTitular);
+            ICollection<Pair<Produto, int>> infoCart = CarrinhoCompras.getShoppingCartInfo();
+            Compra compra = new Compra(-1, DateTime.Now, CurrentUser.getCurrentUser(), infoCart);
+            ef.addCompra(compra);
+            CarrinhoCompras.clearCarrinho();
+            CreditCartInfo.clear();
+            Event.InvokeAsync(null); // Atualiza a página do carrinho de compras
+            Close(); // fecha a janela que pede os dados do cartão
+        }
     }
 
 }

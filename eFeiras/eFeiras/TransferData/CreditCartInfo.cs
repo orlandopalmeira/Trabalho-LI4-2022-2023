@@ -9,7 +9,7 @@ namespace eFeiras.TransferData
         private static string? validade = null;
         private static string? titular = null;
 
-        private static void setData(string number, string cvv, string validade, string titular)
+        public static void setData(string number, string cvv, string validade, string titular)
         {
             CreditCartInfo.number = number;
             CreditCartInfo.cvv = cvv;
@@ -35,6 +35,11 @@ namespace eFeiras.TransferData
         public static string getTitular()
         {
             return CreditCartInfo.titular;
+        }
+
+        public static void clear()
+        {
+            number = cvv = validade = titular = null;
         }
 
     }

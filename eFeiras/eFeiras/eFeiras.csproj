@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Pages\Administrador\" />
     <Folder Include="Pages\Geral\" />
-    <Folder Include="Pages\Vendedor\" />
     <Folder Include="Shared\Administrador\" />
     <Folder Include="Shared\Vendedor\" />
     <Folder Include="wwwroot\Media\uploads\" />

@@ -46,8 +46,8 @@ create table Feira (
 
 -- 5
 create table Banca(
-	Feira_id int not null identity(1,1),
-	Utilizador_id int not null,
+	Feira_id int not null foreign key references Feira(id),
+	Utilizador_id int not null foreign key references Utilizador(id),
 	titulo varchar(50) not null,
 	primary key (Feira_id,Utilizador_id),
 );
@@ -83,7 +83,7 @@ create table Compra(
 -- 9 
 create table compra_has_produto(
 	Compra_id int not null foreign key references Compra(id),
-	Produto_id int not null foreign key references Compra(id),
+	Produto_id int not null foreign key references Produto(id),
 	quantidade int not null,
 	primary key(Compra_id,Produto_id)
 );

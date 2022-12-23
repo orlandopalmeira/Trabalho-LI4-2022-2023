@@ -56,18 +56,19 @@ namespace eFeiras.Business.Compras
             }
         }
         /// <summary>
-        /// Calcula o montante desta compra de acordo com os produto que tem.
+        /// Calcula o montante desta compra de acordo com os produtos que tem.
         /// </summary>
-        public void calcMontante1()
+        public float calcMontante()
         {
-            montante = 0;
+            this.montante = 0;
             if(this.produtos != null)
             {
                 foreach (Pair<Produto, int> p in produtos)
                 {
-                    montante += p.getX().getPreco() * p.getY();
+                    this.montante += p.getX().getPreco() * p.getY();
                 }
-            }            
+            }
+            return this.montante;
         }
         private int hasProduto(Produto p)
         {

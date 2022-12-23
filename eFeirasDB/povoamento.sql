@@ -48,12 +48,12 @@ insert into dbo.Feira (titulo,descricao,data_inicio,data_fim,imagem,limite_banca
 	('Feira de eletrónica','Feira de venda de produtos eletrónicos (smartphones, tablets, etc...)','2022-12-14','2023-01-10','Media/IlustrFeiras/feira_tecnologia.jpg','10','4'),
 	('Feira de artesanato','Feira de venda de produtos personalizados feitos manualmente','2022-12-14','2023-01-10','Media/IlustrFeiras/feira_artesanato.jpg','10','5');
 
-SET IDENTITY_INSERT dbo.Banca ON; -- sou obrigado a fazer isto, não sei porquê :)
+--SET IDENTITY_INSERT dbo.Banca ON; -- sou obrigado a fazer isto, não sei porquê :)
 insert into dbo.Banca (Feira_id,Utilizador_id,titulo) values
-	('1','5','A Banca do Sr.Alberto'),
-	('1','6','Frutas e Companhia'),
-	('1','7','Banca Gourmet');
-SET IDENTITY_INSERT dbo.Banca OFF;
+	('1','3','A Banca do Sr.Alberto'),
+	('1','4','Frutas e Companhia'),
+	('1','5','Banca Gourmet');
+--SET IDENTITY_INSERT dbo.Banca OFF;
 
 INSERT INTO dbo.Produto (nome, descricao, preco, quantidade_disponivel, imagem, Utilizador_id, SubCategoria_id)
 VALUES 
@@ -76,33 +76,24 @@ VALUES
 
 insert into dbo.banca_has_produto (Feira_id,Utilizador_id,Produto_id)
 values
-	('1','5','1'),
-	('1','5','2'),
-	('1','5','3'),
-	('1','5','4'),
-	('1','5','5'),
-	('1','6','6'),
-	('1','6','7'),
-	('1','6','8'),
-	('1','6','9'),
-	('1','6','10'),
-	('1','7','11'),
-	('1','7','12'),
-	('1','7','13'),
-	('1','7','14'),
-	('1','7','15');
+	('1','3','1'),
+	('1','3','2'),
+	('1','3','3'),
+	('1','3','4'),
+	('1','3','5'),
+	('1','4','6'),
+	('1','4','7'),
+	('1','4','8'),
+	('1','4','9'),
+	('1','4','10'),
+	('1','5','11'),
+	('1','5','12'),
+	('1','5','13'),
+	('1','5','14'),
+	('1','5','15');
 
 
 
-SELECT f.titulo as 'Feira' , b.titulo as 'Banca', u.nome as 'Vendedor', p.nome as 'Produto', p.descricao as 'ProdDesc', p.preco as 'Preço'
-FROM dbo.Banca b
-INNER JOIN dbo.banca_has_produto bp ON b.Utilizador_id = bp.Utilizador_id AND b.Feira_id = bp.Feira_id
-INNER JOIN dbo.Produto p ON bp.Produto_id = p.id
-INNER JOIN dbo.Utilizador u on b.Utilizador_id = u.id
-INNER JOIN dbo.Feira f ON f.id = b.Feira_id
-;
-
-select * from dbo.Utilizador where e_mail='orlandopalmeira51@gmail.com'
 
 
 

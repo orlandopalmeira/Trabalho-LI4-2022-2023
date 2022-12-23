@@ -19,13 +19,15 @@ namespace eFeiras.Data
 
         public static string GetConnectionString()
         {
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            /*SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = MACHINE;
             builder.UserID = USER;
             builder.Password = PASSWORD;
             builder.InitialCatalog = DATABASE;
             builder.TrustServerCertificate = true;
-            return builder.ConnectionString;
+            return builder.ConnectionString;*/
+
+            return "Server = JOÃODESKTOP\\SQLEXPRESS; Database = eFeiras; User Id = joao; Password = joao; Trusted_Connection = True";
         }
     }
 }

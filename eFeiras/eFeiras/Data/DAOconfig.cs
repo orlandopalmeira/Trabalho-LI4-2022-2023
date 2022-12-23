@@ -7,11 +7,16 @@ namespace eFeiras.Data
     /// </summary>
     internal class DAOconfig
     {
-        public const string USER = "orlando";
-        public const string PASSWORD = "orlando912";
-        public const string MACHINE = "ORLANDOPC\\SQLEXPRESS";
+        //public const string USER = "orlando";
+        //public const string PASSWORD = "orlando912";
+        //public const string MACHINE = "ORLANDOPC\\SQLEXPRESS";
+        //public const string DATABASE = "eFeiras";
+
+        public const string USER = "Project_DBcon";
+        public const string PASSWORD = "projecto";
+        public const string MACHINE = "JOÃODESKTOP\\SQLEXPRESS";
         public const string DATABASE = "eFeiras";
-    
+
         public static string GetConnectionString()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();

@@ -502,24 +502,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\orlan\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\joao_\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\eFeiras.csproj",
+      "projectUniqueName": "C:\\Users\\joao_\\Desktop\\Projecto\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\eFeiras.csproj",
       "projectName": "eFeiras",
-      "projectPath": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\eFeiras.csproj",
-      "packagesPath": "C:\\Users\\orlan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\orlan\\Desktop\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\obj\\",
+      "projectPath": "C:\\Users\\joao_\\Desktop\\Projecto\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\eFeiras.csproj",
+      "packagesPath": "C:\\Users\\joao_\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joao_\\Desktop\\Projecto\\Trabalho-LI4-2022-2023\\eFeiras\\eFeiras\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\orlan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\joao_\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -527,7 +522,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -574,7 +568,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

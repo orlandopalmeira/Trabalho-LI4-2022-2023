@@ -133,6 +133,17 @@ namespace eFeiras.Business.Feiras
             return today.CompareTo(this.data_inicio) >= 0 && today.CompareTo(this.data_fim) <= 0;
         }
 
+        public bool utilizadorTemBanca(int id_vendedor)
+        {
+            foreach(Banca b in this.bancas)
+            {
+                if(b.getVendedorId() == id_vendedor)
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 
     

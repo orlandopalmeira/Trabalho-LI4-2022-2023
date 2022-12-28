@@ -10,7 +10,6 @@
     <Folder Include="Pages\Administrador\" />
     <Folder Include="Pages\Geral\" />
     <Folder Include="Shared\Administrador\" />
-    <Folder Include="Shared\Vendedor\" />
     <Folder Include="wwwroot\Media\uploads\" />
   </ItemGroup>
 

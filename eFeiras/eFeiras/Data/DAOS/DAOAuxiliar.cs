@@ -467,7 +467,7 @@ namespace eFeiras.Data.DAOS
                     Banca aux = con.QueryFirst<Banca>(s_cmd);
                     Feira feira = con.QueryFirst<Feira>($"SELECT * FROM dbo.Feira WHERE id='{feira_id}'");
                     Utilizador vendedor = getUtilizador(utilizador_id);
-                    IEnumerable<int> prodsIDS = con.Query<int>($"SELECT * FROM dbo.banca_has_produto WHERE Feira_id = '{feira_id}' AND Utilizador_id = '{utilizador_id}'");
+                    IEnumerable<int> prodsIDS = con.Query<int>($"SELECT Produto_id FROM dbo.banca_has_produto WHERE Feira_id = '{feira_id}' AND Utilizador_id = '{utilizador_id}'");
                     foreach (int prodID in prodsIDS)
                     {
                         aux.addProduto(getProduto(prodID));
@@ -498,7 +498,7 @@ namespace eFeiras.Data.DAOS
                     {
                         Feira feira = con.QueryFirst<Feira>($"SELECT * FROM dbo.Feira WHERE id='{banca.getFeiraId()}'");
                         Utilizador vendedor = getUtilizador(banca.getVendedorId());
-                        IEnumerable<int> prodsIDS = con.Query<int>($"SELECT * FROM dbo.banca_has_produto WHERE Feira_id = '{banca.getFeiraId()}' AND Utilizador_id = '{banca.getVendedorId()}'");
+                        IEnumerable<int> prodsIDS = con.Query<int>($"SELECT Produto_id FROM dbo.banca_has_produto WHERE Feira_id = '{banca.getFeiraId()}' AND Utilizador_id = '{banca.getVendedorId()}'");
                         foreach (int prodID in prodsIDS)
                         {
                             banca.addProduto(getProduto(prodID));
@@ -680,6 +680,48 @@ namespace eFeiras.Data.DAOS
                 throw new DAOException(e.Message);
             }
             return result;
+        }
+
+        // relação banca_has_produto
+
+        internal static void removeProdutoFromBanca(Produto p, Banca b)
+        {
+            string s_cmd = $"DELETE FROM dbo.banca_has_produto WHERE Feira_id = {b.getFeiraId()} AND Utilizador_id = {b.getVendedorId()} AND Produto_id = {p.getID()};";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                throw new DAOException(e.Message);
+            }
+        }
+
+        internal static void addToBancaHasProduto(Produto p, Banca b)
+        {
+            string s_cmd = $"INSERT INTO dbo.banca_has_produto (Feira_id,Utilizador_id,Produto_id) VALUES ('{b.getFeiraId()}','{b.getVendedorId()}','{p.getID()}')";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(s_cmd, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException(e.Message);
+            }
         }
     }
 }

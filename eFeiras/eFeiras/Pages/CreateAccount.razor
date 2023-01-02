@@ -2,10 +2,10 @@
 @layout StartLayout
 @inject NavigationManager NavigationManager
 
-<LogoOnTop></LogoOnTop>
+<LogoOnTop/>
 
 <h3 style="color: #A7A7A7;font-family: 'Economica';">Crie a sua conta</h3>
-<div id="form_cria_conta" style="font-family: 'Economica';">
+<div id="form_cria_conta" style="font-family: 'Economica'; width: 50%; float: left;">
     <div class="form-group row" style="width:500px;">
         <div class="col-sm-10">
             <InputText class="form-control" style="background: #EEEEEE;border-radius: 3px;" placeholder="Nome" @bind-Value="@nome" />
@@ -75,11 +75,16 @@
         <input id="rb_vend" class="rb" type="radio" name="usertype" checked="@vendedor" @onchange="@OnCheckVend" />
     </div>
 
-    <textarea style="background: #EEEEEE;border-radius: 3px;width: 40%;height: 40%" maxlength="4000" placeholder="Caso pretenda ser um vendedor, apresente-se. Diga quais são os seus objectivos e que tipos de produto pretende vender. Se deixar este espaço em branco, a sua conta não será aprovada."></textarea>
-    <br />
-
     <button class="mybtn" style="width: 100px" @onclick=@TryAddAccount>Criar conta</button>
 </div>
+
+@if (vendedor)
+{
+    <div id="apreVend_" style="float: right; width: 50%; height: @altura_apre_vend">
+        <textarea @bind-Value="@apresentacao" @bind-Value:event="oninput" style="background: #EEEEEE;border-radius: 3px;width: 80%;height: 40%; float: left" maxlength="4000" placeholder="Caso pretenda ser um vendedor, apresente-se. Diga quais são os seus objectivos e que tipos de produto pretende vender. Se deixar este espaço em branco, a sua conta não será aprovada."></textarea>
+    </div>
+}
+
 
 <!--Janela de popup usada quando necessário-->
 <Popup @ref="popupRef" />
@@ -96,6 +101,7 @@
     private string codigo_postal = "";
     private string apresentacao = "";
     private string password = "";
+    private string altura_apre_vend = "500px";
 
 
     private bool comprador = true;
@@ -106,7 +112,7 @@
     }
 
     void OnCheckVend(){ 
-        comprador = false; vendedor = true; 
+        comprador = false; vendedor = true;
     }
 
     

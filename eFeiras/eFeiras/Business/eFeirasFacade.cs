@@ -2,6 +2,7 @@
 using eFeiras.Business.Feiras;
 using eFeiras.Business.Produtos;
 using eFeiras.Business.Utilizadores;
+using eFeiras.Business.Bancas;
 using eFeiras.Data;
 
 namespace eFeiras.Business
@@ -46,6 +47,11 @@ namespace eFeiras.Business
             return db.getAllFeirasEmCurso();
         }
 
+        public Feira getFeira(int feiraID)
+        {
+            return db.getFeira(feiraID);
+        }
+
         // Produtos
         public int getQuantidadeDisponivelProduto(int produtoid)
         {
@@ -65,11 +71,25 @@ namespace eFeiras.Business
         }
 
         // Bancas
+        public Banca getBanca(int id_feira, int id_vendedor)
+        {
+            return db.getBanca(id_feira, id_vendedor);
+        }
 
         // Categorias
 
         // Subcategorias
 
+        // Relação banca_has_produto
+        public void removeProdutoFromBanca(Produto p, Banca b)
+        {
+            db.removeProdutoFromBanca(p, b);
+        }
+
+        public void addToBancaHasProduto(Produto p, Banca b)
+        {
+            db.addToBancaHasProduto(p, b);
+        }
 
     }
 }

@@ -287,5 +287,16 @@ namespace eFeiras.Data
             return this.utilizadorDAO.getUtilizadorByEmail(email);
         }
 
+        // relação banca_has_produto
+
+        public void removeProdutoFromBanca(Produto p, Banca b)
+        {
+            DAOAuxiliar.removeProdutoFromBanca(p,b);
+        }
+
+        public void addToBancaHasProduto(Produto p, Banca b)
+        {
+            DAOAuxiliar.addToBancaHasProduto(p,b);
+        }
     }
 }

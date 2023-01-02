@@ -15,3 +15,6 @@ select * from Produto;
 
 select * from Banca;
 update Produto set quantidade_disponivel = 30;
+
+select * from banca_has_produto;
+insert into banca_has_produto (Feira_id,Utilizador_id,Produto_id) values ('1','4','6');

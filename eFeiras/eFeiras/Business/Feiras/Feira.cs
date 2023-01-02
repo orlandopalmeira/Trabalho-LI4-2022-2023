@@ -1,6 +1,6 @@
 ﻿using eFeiras.Business.Bancas;
 using eFeiras.Business.Categorias;
-using System.Runtime.CompilerServices;
+using eFeiras.Business.Utilizadores;
 
 namespace eFeiras.Business.Feiras
 {
@@ -144,6 +144,17 @@ namespace eFeiras.Business.Feiras
             return false;
         }
 
+        public Banca? getBancaOfUser(Utilizador user)
+        {
+            foreach(Banca b in bancas)
+            {
+                if(b.getVendedorId() == user.getID())
+                {
+                    return b;
+                }
+            }
+            return null;
+        }
     }
 
     

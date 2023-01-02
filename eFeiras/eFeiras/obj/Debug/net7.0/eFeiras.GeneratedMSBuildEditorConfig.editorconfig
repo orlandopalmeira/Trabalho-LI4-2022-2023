@@ -9,113 +9,129 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = eFeiras
 build_property.RootNamespace = eFeiras
-build_property.ProjectDir = C:\Users\joao_\Desktop\Projecto\Trabalho-LI4-2022-2023\eFeiras\eFeiras\
+build_property.ProjectDir = C:\Users\orlan\Desktop\Trabalho-LI4-2022-2023\eFeiras\eFeiras\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\joao_\Desktop\Projecto\Trabalho-LI4-2022-2023\eFeiras\eFeiras
+build_property.MSBuildProjectDirectory = C:\Users\orlan\Desktop\Trabalho-LI4-2022-2023\eFeiras\eFeiras
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/App.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/CompPage.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/CompPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXENvbXBQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/ShoppingCart.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/ShoppingCart.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXFNob3BwaW5nQ2FydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/VisitaBancaComp.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/VisitaBancaComp.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXFZpc2l0YUJhbmNhQ29tcC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/VisitaFeiraComp.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Comprador/VisitaFeiraComp.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHJhZG9yXFZpc2l0YUZlaXJhQ29tcC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Counter.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/CreateAccount.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/CreateAccount.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlQWNjb3VudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/FetchData.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Login/Start.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Login/Start.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cU3RhcnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Vendedor/VendPage.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Vendedor/VendPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGVkb3JcVmVuZFBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/BancaCardComp.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Vendedor/VisitaBancaVend.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGVkb3JcVmlzaXRhQmFuY2FWZW5kLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Vendedor/VisitaFeiraVend.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVuZGVkb3JcVmlzaXRhRmVpcmFWZW5kLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/BancaCardComp.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxCYW5jYUNhcmRDb21wLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/CreditCardPopup.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/CreditCardPopup.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxDcmVkaXRDYXJkUG9wdXAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/FeiraCardComp.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/FeiraCardComp.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxGZWlyYUNhcmRDb21wLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/ProductCardCart.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/ProductCardCart.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxQcm9kdWN0Q2FyZENhcnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/ProductCardComp.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/ProductCardComp.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxQcm9kdWN0Q2FyZENvbXAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/QuantButton.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Comprador/QuantButton.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXByYWRvclxRdWFudEJ1dHRvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/General/LogoOnTop.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/General/LogoOnTop.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEdlbmVyYWxcTG9nb09uVG9wLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Popup.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Popup.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBvcHVwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/StartLayout.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/StartLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN0YXJ0TGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/SurveyPrompt.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Vendedor/FeiraCardVend.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Vendedor/BancaCardVend.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFZlbmRlZG9yXEJhbmNhQ2FyZFZlbmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Vendedor/FeiraCardVend.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFZlbmRlZG9yXEZlaXJhQ2FyZFZlbmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/_Imports.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/Vendedor/ProductCardVend.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFZlbmRlZG9yXFByb2R1Y3RDYXJkVmVuZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/MainLayout.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-w9wlubtxts
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/NavMenu.razor]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-x03ngdko1c
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Error.cshtml]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/joao_/Desktop/Projecto/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/_Host.cshtml]
+[C:/Users/orlan/Desktop/Trabalho-LI4-2022-2023/eFeiras/eFeiras/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

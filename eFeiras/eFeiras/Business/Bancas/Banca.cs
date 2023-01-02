@@ -76,5 +76,10 @@ namespace eFeiras.Business.Bancas
         {
             return this.feira_id.GetHashCode() + this.vendedor_id.GetHashCode();
         }
+
+        public bool isOwner(Utilizador user)
+        {
+            return user.getID() == this.vendedor.getID();
+        }
     }
 }

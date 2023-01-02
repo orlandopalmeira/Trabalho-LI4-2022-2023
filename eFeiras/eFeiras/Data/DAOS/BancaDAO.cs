@@ -84,9 +84,9 @@ namespace eFeiras.Data.DAOS
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new DAOException("Erro no put do BancaDAO");
+                throw new DAOException(e.Message);
             }
         }
 

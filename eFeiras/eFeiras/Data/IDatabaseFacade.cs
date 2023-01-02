@@ -115,5 +115,10 @@ namespace eFeiras.Data
         public bool existsUsername(string username);
 
         public Utilizador getUtilizadorWithEmail(string email);
+
+        // Relação banca_has_produto
+        public void removeProdutoFromBanca(Produto p, Banca b);
+
+        public void addToBancaHasProduto(Produto p, Banca b);
     }
 }

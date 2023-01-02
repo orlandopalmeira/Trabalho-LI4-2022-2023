@@ -1,8 +1,7 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject NavigationManager NavigationManager 
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <!--<a class="navbar-brand" href=""> -->
-        
-        <!--</a> -->
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,18 +18,7 @@
                 </NavLink>
             </div>
         }
-        <!--
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div> -->
-        @if(CurrentUserType == 1)
+        @if(CurrentUserType == 1) // comprador
         {   
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="ShoppingCart">
@@ -38,6 +26,13 @@
                 </NavLink>
             </div>
         }
+
+        <div class="nav-item px-3" @onclick="Logout">
+            <NavLink class="nav-link">
+                <span class="oi oi-account-logout" aria-hidden="true"></span> Sair
+            </NavLink>
+        </div>
+
     </nav>
 </div>
 
@@ -51,5 +46,15 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void Logout()
+    {
+        VisitedBanca.setBanca(null);
+        VisitedFeira.setFeira(null);
+        CarrinhoCompras.clear();
+        CreditCartInfo.clear();
+        CurrentUser.setCurrentUser(null);
+        NavigationManager.NavigateTo("");
     }
 }

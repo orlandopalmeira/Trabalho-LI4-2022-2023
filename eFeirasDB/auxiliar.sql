@@ -6,6 +6,7 @@ select * from dbo.Utilizador;
 delete from Compra;
 DBCC CHECKIDENT ('dbo.Compra', RESEED, 0);
 select * from Compra;
+delete from Compra;
 select * from compra_has_produto;
 delete from compra_has_produto;
 -- apaga o utilizador.

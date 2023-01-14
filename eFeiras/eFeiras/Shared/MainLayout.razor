@@ -1,21 +1,115 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 @using eFeiras.TransferData;
 
 <PageTitle>eFeiras</PageTitle>
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <!--<a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>-->
-            <div style="position: absolute; left: 10pt; ">Bem-vindo(a), @CurrentUser.getCurrentUser().getNome()</div>
+<div class="toolbar">
+    <div class="esq">
+        <div>
+            <img class="logo" src="Media/logo.png" alt="Logotipo eFeiras">
         </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+        <div class="sep"></div>
+        <div>
+            Bem-vindo(a), @CurrentUser.getCurrentUser().getNome()
+        </div>
+    </div>
+    <div>
+        <nav class="nav_icons">
+            @if (CurrentUserType != 0)
+            {
+                <button class="botao" title="Página Inicial" @onclick="goToHome">
+                    <img class="icons" src="Media/icon_home.png" alt="Home Icon">
+                </button>
+            }
+            @if (CurrentUserType == 1) // comprador
+            {
+                <button class="botao" title="Carrinho de Compras" @onclick="goToCart">
+                    <img class="icons" src="Media/icon_cart.png" alt="Cart Icon">
+                </button>
+            }
+            <button class="botao" title="Logout" @onclick="Logout">
+                <img class="icons" src="Media/icon_logout.png" alt="Logout Icon">
+            </button>
+        </nav>
+    </div>
 </div>
+<div class="linha_separadora"></div>
+
+<article class="content px-4">
+    @Body
+</article>
+
+<style>
+
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: inherit;
+        padding-top: .75%;
+    }
+
+    .toolbar button {
+        background-color: inherit;
+        border: none;
+        margin-right: 5px;
+    }
+
+    .toolbar button img:hover {
+            filter:opacity(50%);
+    }
+
+    .logo {
+        width: 100px;
+        margin-left: 20%;
+    }
+
+    .icons {
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    .linha_separadora {
+        border-top: 1px solid #ccc;
+        margin: 20px 0;
+    }
+
+    .sep {
+        border-left: 2px solid #ccc;
+        height: 40px;
+        margin-left:40px;
+        margin-right:20px;
+    }
+
+    .esq{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: inherit;
+    }
+</style>
+
+@code {
+    private byte CurrentUserType = CurrentUser.getCurrentUser().getUserType();
+
+    private void goToHome()
+    {
+        NavigationManager.NavigateTo(CurrentUserType == 1 ? "CompPage" : "VendPage");
+    }
+
+    private void goToCart()
+    {
+        NavigationManager.NavigateTo("ShoppingCart");
+    }
+
+    private void Logout()
+    {
+        VisitedBanca.setBanca(null);
+        VisitedFeira.setFeira(null);
+        CarrinhoCompras.clear();
+        CreditCartInfo.clear();
+        CurrentUser.setCurrentUser(new Utilizador(-1,255,"","","","","","","","",false,"",""));
+        NavigationManager.NavigateTo("");
+    }
+}

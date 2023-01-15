@@ -4,6 +4,8 @@
 @using eFeiras.Shared.Comprador;
 @inject NavigationManager NavigationManager
 
+<PageTitle>@Feira.getName()</PageTitle>
+
 @if(Feira == null)
 {
     <h5>Loading...</h5>

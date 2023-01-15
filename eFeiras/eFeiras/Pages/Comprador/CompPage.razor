@@ -14,10 +14,11 @@
         }
         else
         {
-            foreach (Feira feira in Feiras)
+            @foreach (Feira feira in Feiras)
             {
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <FeiraCardComp Feira="feira" />
+                    <div style="height: 16px"></div>
                 </div>
             }
         }
@@ -28,11 +29,12 @@
     .card-deck {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: minmax(auto, 6.5cm);
         grid-gap: 16px;
         width: 100%;
     }
 
-    .col-md-4 {
+    .col-md-5 {
         padding: 0;
         height: auto;/*220px;*/
         width: 95%;
@@ -40,5 +42,5 @@
 </style>
 
 @code {
-    private ICollection<Feira>? Feiras = new eFeirasFacade().getFeirasEmCurso();
+    private ICollection<Feira> Feiras = new eFeirasFacade().getFeirasEmCurso();
 }

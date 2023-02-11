@@ -29,5 +29,7 @@ compras de acordo com as suas necessidades e preferências.
 
 </div>
 
+### Nota: 18 / 20
+
 <h3><i>Keywords</i></h3>
 LI4, Laboratórios de Informática IV, laboratorios de informatica 4, uminho, miei, lei, engenharia informatica

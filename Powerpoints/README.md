@@ -1,4 +1,4 @@
-## Apresentações utilizadas nos _checkpoints_ de LI4
+## Apresentações utilizadas nos _checkpoints_ e na apresentação final de LI4
 
 ### Notas nos _checkpoints_ (não contam para a avaliação final, é apenas um feedback)
 
